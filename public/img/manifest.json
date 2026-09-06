@@ -1,0 +1,378 @@
+{
+ "commerce": [
+  {
+   "file": "commerce-1.webp",
+   "src": "COMMERCE_p08_23.jpeg",
+   "w": 628,
+   "h": 360
+  },
+  {
+   "file": "commerce-2.webp",
+   "src": "COMMERCE_p08_25.jpeg",
+   "w": 640,
+   "h": 308
+  },
+  {
+   "file": "commerce-3.webp",
+   "src": "COMMERCE_p05_17.jpeg",
+   "w": 621,
+   "h": 310
+  },
+  {
+   "file": "commerce-4.webp",
+   "src": "COMMERCE_p03_10.jpeg",
+   "w": 480,
+   "h": 270
+  },
+  {
+   "file": "commerce-5.webp",
+   "src": "COMMERCE_p03_11.jpeg",
+   "w": 480,
+   "h": 270
+  },
+  {
+   "file": "commerce-6.webp",
+   "src": "COMMERCE_p03_12.jpeg",
+   "w": 480,
+   "h": 270
+  }
+ ],
+ "culture": [
+  {
+   "file": "culture-1.webp",
+   "src": "CULTURE_p02_02.jpeg",
+   "w": 893,
+   "h": 324
+  },
+  {
+   "file": "culture-2.webp",
+   "src": "CULTURE_p02_03.jpeg",
+   "w": 674,
+   "h": 450
+  }
+ ],
+ "design": [
+  {
+   "file": "design-1.webp",
+   "src": "DESIGN_p02_03.jpeg",
+   "w": 476,
+   "h": 480
+  },
+  {
+   "file": "design-2.webp",
+   "src": "DESIGN_p02_01.jpeg",
+   "w": 476,
+   "h": 470
+  },
+  {
+   "file": "design-3.webp",
+   "src": "DESIGN_p05_15.jpeg",
+   "w": 596,
+   "h": 240
+  },
+  {
+   "file": "design-4.webp",
+   "src": "DESIGN_p10_39.jpeg",
+   "w": 480,
+   "h": 270
+  },
+  {
+   "file": "design-5.webp",
+   "src": "DESIGN_p10_42.jpeg",
+   "w": 480,
+   "h": 270
+  },
+  {
+   "file": "design-6.webp",
+   "src": "DESIGN_p03_08.jpeg",
+   "w": 581,
+   "h": 386
+  }
+ ],
+ "enseignement": [
+  {
+   "file": "enseignement-1.webp",
+   "src": "ENSEIGNEMENT_p04_16.jpeg",
+   "w": 775,
+   "h": 317
+  },
+  {
+   "file": "enseignement-2.webp",
+   "src": "ENSEIGNEMENT_p04_19.jpeg",
+   "w": 415,
+   "h": 630
+  },
+  {
+   "file": "enseignement-3.webp",
+   "src": "ENSEIGNEMENT_p04_17.jpeg",
+   "w": 815,
+   "h": 284
+  },
+  {
+   "file": "enseignement-4.webp",
+   "src": "ENSEIGNEMENT_p04_15.jpeg",
+   "w": 707,
+   "h": 275
+  },
+  {
+   "file": "enseignement-5.webp",
+   "src": "ENSEIGNEMENT_p03_12.jpeg",
+   "w": 615,
+   "h": 410
+  },
+  {
+   "file": "enseignement-6.webp",
+   "src": "ENSEIGNEMENT_p04_18.jpeg",
+   "w": 366,
+   "h": 627
+  }
+ ],
+ "logement": [
+  {
+   "file": "logement-1.webp",
+   "src": "LOGEMENT_p04_16.jpeg",
+   "w": 478,
+   "h": 269
+  },
+  {
+   "file": "logement-2.webp",
+   "src": "LOGEMENT_p03_10.jpeg",
+   "w": 466,
+   "h": 270
+  },
+  {
+   "file": "logement-3.webp",
+   "src": "LOGEMENT_p04_17.jpeg",
+   "w": 480,
+   "h": 270
+  },
+  {
+   "file": "logement-4.webp",
+   "src": "LOGEMENT_p03_11.jpeg",
+   "w": 466,
+   "h": 270
+  },
+  {
+   "file": "logement-5.webp",
+   "src": "LOGEMENT_p04_19.jpeg",
+   "w": 477,
+   "h": 269
+  },
+  {
+   "file": "logement-6.webp",
+   "src": "LOGEMENT_p03_12.jpeg",
+   "w": 466,
+   "h": 270
+  }
+ ],
+ "sante": [
+  {
+   "file": "sante-1.webp",
+   "src": "SANTE_p05_11.jpeg",
+   "w": 376,
+   "h": 349
+  },
+  {
+   "file": "sante-2.webp",
+   "src": "SANTE_p03_05.jpeg",
+   "w": 459,
+   "h": 452
+  },
+  {
+   "file": "sante-3.webp",
+   "src": "SANTE_p04_09.jpeg",
+   "w": 304,
+   "h": 577
+  },
+  {
+   "file": "sante-4.webp",
+   "src": "SANTE_p05_15.jpeg",
+   "w": 960,
+   "h": 540
+  },
+  {
+   "file": "sante-5.webp",
+   "src": "SANTE_p05_14.jpeg",
+   "w": 953,
+   "h": 537
+  },
+  {
+   "file": "sante-6.webp",
+   "src": "SANTE_p04_08.jpeg",
+   "w": 624,
+   "h": 303
+  }
+ ],
+ "signaletique": [
+  {
+   "file": "signaletique-1.webp",
+   "src": "SIGNALETIQUE_p02_02.jpeg",
+   "w": 450,
+   "h": 450
+  },
+  {
+   "file": "signaletique-2.webp",
+   "src": "SIGNALETIQUE_p03_09.jpeg",
+   "w": 447,
+   "h": 439
+  },
+  {
+   "file": "signaletique-3.webp",
+   "src": "SIGNALETIQUE_p02_03.jpeg",
+   "w": 219,
+   "h": 671
+  },
+  {
+   "file": "signaletique-4.webp",
+   "src": "SIGNALETIQUE_p02_05.jpeg",
+   "w": 671,
+   "h": 219
+  },
+  {
+   "file": "signaletique-5.webp",
+   "src": "SIGNALETIQUE_p02_04.jpeg",
+   "w": 455,
+   "h": 239
+  },
+  {
+   "file": "signaletique-6.webp",
+   "src": "SIGNALETIQUE_p03_07.jpeg",
+   "w": 502,
+   "h": 494
+  }
+ ],
+ "sport": [
+  {
+   "file": "sport-1.webp",
+   "src": "SPORT_p02_04.jpeg",
+   "w": 383,
+   "h": 518
+  },
+  {
+   "file": "sport-2.webp",
+   "src": "SPORT_p03_06.jpeg",
+   "w": 403,
+   "h": 227
+  },
+  {
+   "file": "sport-3.webp",
+   "src": "SPORT_p02_03.jpeg",
+   "w": 1625,
+   "h": 817
+  },
+  {
+   "file": "sport-4.webp",
+   "src": "SPORT_p03_17.jpeg",
+   "w": 676,
+   "h": 375
+  },
+  {
+   "file": "sport-5.webp",
+   "src": "SPORT_p03_12.jpeg",
+   "w": 676,
+   "h": 375
+  },
+  {
+   "file": "sport-6.webp",
+   "src": "SPORT_p03_05.jpeg",
+   "w": 670,
+   "h": 375
+  }
+ ],
+ "tertiaire": [
+  {
+   "file": "tertiaire-1.webp",
+   "src": "TERTIAIRE_p06_29.jpeg",
+   "w": 1250,
+   "h": 800
+  },
+  {
+   "file": "tertiaire-2.webp",
+   "src": "TERTIAIRE_p05_19.jpeg",
+   "w": 948,
+   "h": 744
+  },
+  {
+   "file": "tertiaire-3.webp",
+   "src": "TERTIAIRE_p04_17.jpeg",
+   "w": 625,
+   "h": 417
+  },
+  {
+   "file": "tertiaire-4.webp",
+   "src": "TERTIAIRE_p09_47.jpeg",
+   "w": 480,
+   "h": 270
+  },
+  {
+   "file": "tertiaire-5.webp",
+   "src": "TERTIAIRE_p09_44.jpeg",
+   "w": 477,
+   "h": 269
+  },
+  {
+   "file": "tertiaire-6.webp",
+   "src": "TERTIAIRE_p09_48.jpeg",
+   "w": 477,
+   "h": 269
+  }
+ ],
+ "transport": [
+  {
+   "file": "transport-1.webp",
+   "src": "TRANSPORT_p06_16.jpeg",
+   "w": 676,
+   "h": 324
+  },
+  {
+   "file": "transport-2.webp",
+   "src": "TRANSPORT_p03_07.jpeg",
+   "w": 314,
+   "h": 674
+  },
+  {
+   "file": "transport-3.webp",
+   "src": "TRANSPORT_p02_03.jpeg",
+   "w": 216,
+   "h": 450
+  },
+  {
+   "file": "transport-4.webp",
+   "src": "TRANSPORT_p05_11.jpeg",
+   "w": 620,
+   "h": 315
+  },
+  {
+   "file": "transport-5.webp",
+   "src": "TRANSPORT_p06_14.jpeg",
+   "w": 375,
+   "h": 491
+  },
+  {
+   "file": "transport-6.webp",
+   "src": "TRANSPORT_p05_13.jpeg",
+   "w": 609,
+   "h": 307
+  }
+ ],
+ "urbanisme": [
+  {
+   "file": "urbanisme-1.webp",
+   "src": "URBANISME_p02_02.jpg",
+   "w": 2431,
+   "h": 1452
+  },
+  {
+   "file": "urbanisme-2.webp",
+   "src": "URBANISME_p02_03.jpg",
+   "w": 2459,
+   "h": 1636
+  },
+  {
+   "file": "urbanisme-3.webp",
+   "src": "URBANISME_p02_01.jpg",
+   "w": 2421,
+   "h": 452
+  }
+ ]
+}

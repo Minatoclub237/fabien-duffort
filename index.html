@@ -1,0 +1,428 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fabien Duffort — Designer & architecte d'intérieur, Toulouse</title>
+  <meta name="description" content="Design d'espaces, mobilier spécifique, signalétique et aménagement. Commerce, transport, santé, sport, tertiaire — de l'étude à la livraison." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%2354392E'/><text x='16' y='22' font-family='sans-serif' font-size='15' font-weight='700' fill='%23F2F0EE' text-anchor='middle'>FD</text></svg>" />
+</head>
+<body>
+
+<!-- ═══ NAVIGATION ═══ -->
+<header class="nav" id="nav">
+  <a class="nav__brand" href="#top">
+    <span class="nav__mark">FD</span>
+    <span class="nav__name">Fabien Duffort</span>
+  </a>
+  <nav class="nav__links">
+    <a href="#apropos">À propos</a>
+    <a href="#savoir-faire">Savoir-faire</a>
+    <a href="#projets">Projets</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  <a class="btn btn--sm" href="#projets">
+    <span>Voir les projets</span>
+    <i class="btn__arrow" aria-hidden="true"></i>
+  </a>
+</header>
+
+<!-- ═══ HERO ═══ -->
+<div class="hero-wrap" id="top">
+  <section class="hero">
+    <div class="hero__media">
+      <img src="/img/logement-6.webp" alt="Séjour aménagé, projet de rénovation" fetchpriority="high" />
+    </div>
+    <div class="hero__veil"></div>
+    <div class="hero__inner">
+      <span class="pill pill--light" data-hero="1">
+        <i class="dot"></i> Design &amp; architecture intérieure — Toulouse
+      </span>
+      <h1 class="hero__title">
+        <span class="line" data-hero="2"><span>Dessiner des lieux</span></span>
+        <span class="line" data-hero="3"><span>qui tiennent dans le temps</span></span>
+      </h1>
+      <p class="hero__lead" data-hero="4">
+        Vingt ans d'études et de chantiers au service d'espaces publics, commerciaux
+        et privés : du mobilier dessiné sur mesure à la direction des études.
+      </p>
+      <div class="hero__cta" data-hero="5">
+        <a class="btn btn--light" href="#projets">
+          <span>Découvrir le travail</span>
+          <i class="btn__arrow" aria-hidden="true"></i>
+        </a>
+        <a class="link-ghost" href="#apropos">Le parcours</a>
+      </div>
+    </div>
+    <div class="hero__scroll" data-hero="6"><i></i> Défiler</div>
+  </section>
+</div>
+
+<main>
+
+  <!-- ═══ À PROPOS ═══ -->
+  <section class="about section" id="apropos">
+    <div class="wrap">
+      <div class="about__head">
+        <div>
+          <span class="eyebrow">— À propos</span>
+          <h2 class="h2 reveal">
+            <span class="line"><span>Des espaces pensés pour l'usage,</span></span>
+            <span class="line"><span>pas pour la photographie</span></span>
+          </h2>
+        </div>
+        <div class="about__text">
+          <p class="reveal-fade">
+            Designer et architecte d'intérieur installé à Toulouse, j'interviens du concours
+            à la réception des travaux : design d'espaces et de mobilier spécifique,
+            aménagement, étude chromatique, signalétique. Une pratique nourrie par la
+            collaboration avec des agences d'architecture et des maîtres d'ouvrage publics
+            comme privés.
+          </p>
+          <a class="btn" href="#savoir-faire">
+            <span>Le savoir-faire</span>
+            <i class="btn__arrow" aria-hidden="true"></i>
+          </a>
+        </div>
+      </div>
+
+      <div class="about__grid">
+        <figure class="about__fig about__fig--tall parallax">
+          <img src="/img/tertiaire-1.webp" alt="Circulation de bureaux, projet tertiaire" loading="lazy" />
+        </figure>
+        <figure class="about__fig parallax">
+          <img src="/img/enseignement-5.webp" alt="Hall et escalier, équipement d'enseignement" loading="lazy" />
+        </figure>
+        <div class="about__stats">
+          <div class="stat">
+            <strong class="stat__num" data-count="20">0</strong>
+            <span>années de pratique<br />du projet</span>
+          </div>
+          <div class="stat">
+            <strong class="stat__num" data-count="11">0</strong>
+            <span>familles de<br />programmes</span>
+          </div>
+          <div class="stat">
+            <strong class="stat__num" data-count="60" data-suffix="+">0</strong>
+            <span>projets étudiés<br />et suivis</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ SAVOIR-FAIRE : piste horizontale épinglée ═══ -->
+  <section class="services" id="savoir-faire">
+    <div class="services__head">
+      <span class="eyebrow">— Savoir-faire</span>
+      <h2 class="h2 reveal">
+        <span class="line"><span>Onze terrains de jeu,</span></span>
+        <span class="line"><span>une même exigence de détail</span></span>
+      </h2>
+    </div>
+    <div class="services__viewport">
+      <div class="services__track" id="svcTrack"><!-- injecté par JS --></div>
+    </div>
+    <div class="services__hint"><i></i> Faites défiler</div>
+  </section>
+
+  <!-- ═══ MÉTHODE (bloc sombre) ═══ -->
+  <section class="method section">
+    <div class="wrap">
+      <span class="eyebrow">— La méthode</span>
+      <h2 class="h2 reveal">
+        <span class="line"><span>Un projet se tient</span></span>
+        <span class="line"><span>quand le détail se tient</span></span>
+      </h2>
+      <div class="method__body">
+        <figure class="method__media parallax">
+          <img src="/img/transport-6.webp" alt="Comptoir en bois, salon d'aéroport" loading="lazy" />
+        </figure>
+        <div class="method__card">
+          <p>
+            Du concours à la conformité architecturale des travaux réalisés : je dessine,
+            je chiffre, je suis les études et je vérifie sur site. Le mobilier spécifique
+            est prototypé, testé, corrigé — jusqu'à ce qu'il tienne l'usage réel.
+          </p>
+          <ul class="method__list">
+            <li>Faisabilité, esquisse et avant-projet</li>
+            <li>Design de mobilier spécifique et prototypage</li>
+            <li>Étude chromatique et signalétique</li>
+            <li>Direction et suivi des études, conformité en phase travaux</li>
+          </ul>
+          <a class="btn btn--light" href="#contact">
+            <span>Parler d'un projet</span>
+            <i class="btn__arrow" aria-hidden="true"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ PROJETS ═══ -->
+  <section class="projects section" id="projets">
+    <div class="wrap">
+      <div class="projects__head">
+        <div>
+          <span class="eyebrow">— Projets</span>
+          <h2 class="h2 reveal">
+            <span class="line"><span>Une sélection de lieux</span></span>
+            <span class="line"><span>livrés et étudiés</span></span>
+          </h2>
+        </div>
+      </div>
+
+      <article class="project">
+        <div class="project__info">
+          <h3>Salon Croix du Sud</h3>
+          <p>
+            Design et conception du salon de l'aérogare, suivi de construction.
+            Une matière chaude et un plafond travaillé pour tenir le bruit et la lumière.
+          </p>
+          <dl class="meta">
+            <div><dt>Maître d'ouvrage</dt><dd>Aéroport Toulouse-Blagnac</dd></div>
+            <div><dt>Mission</dt><dd>Design, conception, suivi</dd></div>
+            <div><dt>Livraison</dt><dd>2019</dd></div>
+          </dl>
+        </div>
+        <div class="project__media">
+          <figure class="parallax"><img src="/img/transport-6.webp" alt="Salon Croix du Sud, comptoir" loading="lazy" /></figure>
+          <figure class="parallax"><img src="/img/transport-4.webp" alt="Salon Croix du Sud, espace d'attente" loading="lazy" /></figure>
+        </div>
+      </article>
+
+      <article class="project project--flip">
+        <div class="project__info">
+          <h3>Vestiaires du Toulouse Football Club</h3>
+          <p>
+            Design global des vestiaires du club : un vocabulaire d'équipement sportif,
+            dur à l'usage et net à l'œil, jusqu'à l'espace médical et la salle de préparation.
+          </p>
+          <dl class="meta">
+            <div><dt>Maître d'ouvrage</dt><dd>Toulouse Football Club</dd></div>
+            <div><dt>Mission</dt><dd>Complète</dd></div>
+            <div><dt>Livraison</dt><dd>2022</dd></div>
+          </dl>
+        </div>
+        <div class="project__media">
+          <figure class="parallax"><img src="/img/tfc-1.webp" alt="Salle de préparation des vestiaires" loading="lazy" /></figure>
+          <figure class="parallax"><img src="/img/tfc-3.webp" alt="Vestiaires et espace médical" loading="lazy" /></figure>
+        </div>
+      </article>
+
+      <article class="project">
+        <div class="project__info">
+          <h3>Institut Catholique de Toulouse</h3>
+          <p>
+            Étude chromatique des espaces communs, des circulations aux espaces de travail
+            et à la cafétéria : la couleur comme outil d'orientation, pas comme décor.
+          </p>
+          <dl class="meta">
+            <div><dt>Maître d'ouvrage</dt><dd>Institut Catholique de Toulouse</dd></div>
+            <div><dt>Collaboration</dt><dd>DECLIC Architectes</dd></div>
+            <div><dt>Livraison</dt><dd>2020</dd></div>
+          </dl>
+        </div>
+        <div class="project__media">
+          <figure class="parallax"><img src="/img/enseignement-4.webp" alt="Espace commun de l'Institut Catholique" loading="lazy" /></figure>
+          <figure class="parallax"><img src="/img/enseignement-3.webp" alt="Circulation traitée en couleur" loading="lazy" /></figure>
+        </div>
+      </article>
+
+      <article class="project project--flip">
+        <div class="project__info">
+          <h3>Clinique de l'Union — accueil &amp; box d'admission</h3>
+          <p>
+            Dessiner l'accueil d'un lieu de soin : lisibilité du parcours, confort d'attente,
+            mobilier tenu par l'entretien et la norme.
+          </p>
+          <dl class="meta">
+            <div><dt>Maître d'ouvrage</dt><dd>Nouvelle Clinique de l'Union</dd></div>
+            <div><dt>Mission</dt><dd>Complète</dd></div>
+            <div><dt>Livraison</dt><dd>2017</dd></div>
+          </dl>
+        </div>
+        <div class="project__media">
+          <figure class="parallax"><img src="/img/sante-6.webp" alt="Accueil de la clinique" loading="lazy" /></figure>
+          <figure class="parallax"><img src="/img/sante-3.webp" alt="Box d'admission" loading="lazy" /></figure>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ═══ PROCESSUS ═══ -->
+  <section class="process section">
+    <div class="wrap">
+      <div class="process__head">
+        <span class="eyebrow">— Déroulé</span>
+        <h2 class="h2 reveal">
+          <span class="line"><span>Comment un projet</span></span>
+          <span class="line"><span>traverse l'agence</span></span>
+        </h2>
+      </div>
+      <div class="process__grid">
+        <article class="pcard"><span class="pcard__n">01</span><h3>Diagnostic &amp; faisabilité</h3><p>Relevé, contraintes, usages réels. On mesure avant de dessiner.</p></article>
+        <article class="pcard"><span class="pcard__n">02</span><h3>Conception &amp; chiffrage</h3><p>Esquisse, avant-projet, étude chromatique. Chaque intention est tenue par un coût.</p></article>
+        <article class="pcard"><span class="pcard__n">03</span><h3>Prototype &amp; mise au point</h3><p>Le mobilier spécifique se teste en vrai avant d'être lancé en fabrication.</p></article>
+        <article class="pcard"><span class="pcard__n">04</span><h3>Suivi &amp; conformité</h3><p>Direction des études, visites de chantier, conformité architecturale à la réception.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ COMPARATEUR ═══ -->
+  <section class="compare section">
+    <div class="wrap">
+      <div class="compare__head">
+        <span class="eyebrow">— De l'étude au livré</span>
+        <h2 class="h2 reveal">
+          <span class="line"><span>Ce qui était dessiné,</span></span>
+          <span class="line"><span>ce qui a été construit</span></span>
+        </h2>
+      </div>
+      <div class="compare__box" id="compare">
+        <img class="compare__img" src="/img/culture-2.webp" alt="Nef du musée Aeroscopia livrée" loading="lazy" />
+        <div class="compare__clip">
+          <img class="compare__img" src="/img/culture-1.webp" alt="Études de la charpente en phase concours" loading="lazy" />
+        </div>
+        <span class="compare__tag compare__tag--l">Phase concours</span>
+        <span class="compare__tag compare__tag--r">Bâtiment livré</span>
+        <div class="compare__handle"><i></i></div>
+      </div>
+      <p class="compare__note">Musée Aeroscopia — Blagnac · projet lauréat, livré en 2015 (11 032 m²).</p>
+    </div>
+  </section>
+
+  <!-- ═══ MISSIONS (carrousel) ═══ -->
+  <section class="missions section">
+    <div class="wrap">
+      <div class="missions__head">
+        <div>
+          <span class="eyebrow">— Missions</span>
+          <h2 class="h2 reveal">
+            <span class="line"><span>Quatre façons</span></span>
+            <span class="line"><span>de travailler ensemble</span></span>
+          </h2>
+        </div>
+        <div class="missions__nav">
+          <button class="rbtn" id="mPrev" aria-label="Précédent"><i class="rbtn__a rbtn__a--l"></i></button>
+          <button class="rbtn rbtn--dark" id="mNext" aria-label="Suivant"><i class="rbtn__a"></i></button>
+        </div>
+      </div>
+      <div class="missions__viewport">
+        <div class="missions__track" id="mTrack"><!-- injecté par JS --></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ BANDEAU DÉFILANT ═══ -->
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker__row" id="ticker"></div>
+  </div>
+
+  <!-- ═══ MAÎTRES D'OUVRAGE ═══ -->
+  <section class="clients section">
+    <div class="wrap">
+      <div class="clients__head">
+        <span class="eyebrow">— Maîtres d'ouvrage &amp; partenaires</span>
+        <h2 class="h2 reveal">
+          <span class="line"><span>Ils ont confié</span></span>
+          <span class="line"><span>leurs lieux au projet</span></span>
+        </h2>
+      </div>
+      <div class="clients__grid" id="clients"><!-- injecté par JS --></div>
+    </div>
+  </section>
+
+  <!-- ═══ DISTINCTIONS ═══ -->
+  <section class="awards section">
+    <div class="wrap">
+      <div class="awards__head">
+        <span class="eyebrow">— Concours</span>
+        <h2 class="h2 reveal"><span class="line"><span>Projets lauréats</span></span></h2>
+      </div>
+      <div class="awards__grid">
+        <article class="acard">
+          <figure class="parallax"><img src="/img/culture-2.webp" alt="Musée Aeroscopia" loading="lazy" /></figure>
+          <div class="acard__body">
+            <span class="acard__meta">Concours · Lauréat · 2015</span>
+            <h3>Musée Aeroscopia — Blagnac</h3>
+            <p>Direction et suivi des études en phase concours, projet lauréat. 11 032 m².</p>
+          </div>
+        </article>
+        <article class="acard">
+          <figure class="parallax"><img src="/img/commerce-3.webp" alt="Centre commercial Pau-Lescar" loading="lazy" /></figure>
+          <div class="acard__body">
+            <span class="acard__meta">Concours · Lauréat · 2017</span>
+            <h3>Carrefour Pau-Lescar — extension du mail</h3>
+            <p>Conception de l'extension et design spécifique, démarche BREEAM Very Good.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ APPEL FINAL ═══ -->
+  <section class="cta section" id="contact">
+    <div class="wrap cta__inner">
+      <div>
+        <h2 class="h2 reveal">
+          <span class="line"><span>Un lieu à dessiner,</span></span>
+          <span class="line"><span>une étude à reprendre ?</span></span>
+        </h2>
+        <p class="cta__lead">Envoyez le programme, les plans ou simplement l'intention de départ.</p>
+      </div>
+      <div class="cta__side">
+        <div class="avatars">
+          <img src="/img/tertiaire-5.webp" alt="" loading="lazy" />
+          <img src="/img/sante-6.webp" alt="" loading="lazy" />
+          <img src="/img/transport-4.webp" alt="" loading="lazy" />
+          <span class="avatars__more">FD</span>
+        </div>
+        <a class="btn btn--lg" href="mailto:contact@example.com">
+          <span>Écrire à l'agence</span>
+          <i class="btn__arrow" aria-hidden="true"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ═══ PIED DE PAGE ═══ -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__cols">
+      <div class="footer__brand">
+        <span class="nav__mark">FD</span>
+        <p>Design d'espaces, mobilier spécifique,<br />signalétique et aménagement.<br />Toulouse — Occitanie.</p>
+      </div>
+      <div>
+        <h4>Navigation</h4>
+        <a href="#apropos">À propos</a>
+        <a href="#savoir-faire">Savoir-faire</a>
+        <a href="#projets">Projets</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <div>
+        <h4>Programmes</h4>
+        <a href="#savoir-faire">Commerce &amp; transport</a>
+        <a href="#savoir-faire">Santé &amp; enseignement</a>
+        <a href="#savoir-faire">Tertiaire &amp; logement</a>
+        <a href="#savoir-faire">Signalétique &amp; design</a>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <a href="mailto:contact@example.com">contact@example.com</a>
+        <a href="#contact">Toulouse, France</a>
+      </div>
+    </div>
+    <div class="footer__word"><span>DUFFORT</span></div>
+  </div>
+  <div class="footer__bar">
+    <span>© <span id="year"></span> Fabien Duffort — Tous droits réservés</span>
+    <span>Design &amp; développement du site</span>
+  </div>
+</footer>
+
+<script type="module" src="/src/main.js"></script>
+</body>
+</html>
