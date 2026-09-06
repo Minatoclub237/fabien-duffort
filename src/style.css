@@ -483,11 +483,20 @@ main { position: relative; z-index: 1; background: var(--bg); }
   overflow: hidden;
 }
 .tcard__foot { display: flex; align-items: center; gap: 11px; margin-top: auto; }
-.gmark {
-  display: grid; place-items: center; flex: none;
-  width: 32px; height: 32px; border-radius: 50%;
+.tcard__ava {
+  position: relative; flex: none;
+  display: grid; place-items: center;
+  width: 34px; height: 34px; border-radius: 50%;
+  background: var(--espresso); color: #F0E4DA;
+  font-family: var(--font-head); font-weight: 600; font-size: 14px;
+}
+.gbadge {
+  position: absolute; right: -3px; bottom: -3px;
+  display: grid; place-items: center;
+  width: 15px; height: 15px; border-radius: 50%;
   background: #fff; border: 1px solid var(--line);
-  font-family: var(--font-head); font-weight: 700; font-size: 15px; color: #4285F4;
+  font-family: var(--font-head); font-style: normal; font-weight: 700;
+  font-size: 9px; color: #4285F4;
 }
 .tcard__who { display: flex; flex-direction: column; line-height: 1.35; }
 .tcard__who strong { font-size: 13px; font-weight: 500; }

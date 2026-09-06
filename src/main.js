@@ -56,25 +56,26 @@ const MISSIONS = [
 const GOOGLE_URL = 'https://maps.app.goo.gl/xPREvm6N5rUHM2V18';
 
 const AVIS = [
-  { quand: 'il y a 2 mois', visite: 'Visité en juin', texte:
-    "Une expérience tout simplement exceptionnelle ! Je n'aurais jamais imaginé qu'un projet avec un architecte puisse se dérouler aussi parfaitement. Du premier rendez-vous jusqu'à la livraison, tout a été irréprochable : écoute, …" },
-  { quand: 'il y a un mois', visite: 'Visité en juillet', texte:
+  { nom: 'Ingo D', profil: '1 avis', quand: 'il y a 2 mois', visite: 'Visité en juin', texte:
+    "Une expérience tout simplement exceptionnelle ! Je n'aurais jamais imaginé qu'un projet avec un architecte puisse se dérouler aussi parfaitement. Du premier rendez-vous jusqu'à la livraison, tout a été irréprochable : écoute, professionnalisme, créativité et réactivité. Chaque détail a été pensé avec soin, et le résultat dépasse largement toutes mes attentes. On sent une véritable passion pour le métier et une volonté de satisfaire le client à 100 %. C'est sans aucun doute le meilleur service que j'aie reçu de toute ma vie. Je recommande les yeux fermés à toute personne qui recherche l'excellence. Un immense merci pour ce travail remarquable !" },
+  { nom: 'Geraldine Laborie', profil: '8 avis · 1 photo', quand: 'il y a un mois', visite: 'Visité en juillet', texte:
     "Je recommande à 100 % ! Très à l'écoute, professionnel et créatif. Un vrai plaisir de travailler avec Fabien !" },
-  { quand: 'il y a 2 mois', visite: 'Visité en juin', texte:
+  { nom: 'Thierry Landi', profil: '3 avis', quand: 'il y a 2 mois', visite: 'Visité en juin', texte:
     "Un architecte d'intérieur très professionnel, installé à Toulouse. Une qualité d'écoute très appréciable pour arriver à une conception des aménagements et design qui m'a donné entière satisfaction. À recommander sans modération !" },
-  { quand: 'il y a 2 mois', visite: 'Visité en juin', texte:
+  { nom: 'Franck Arnal', profil: '2 avis · 1 photo', quand: 'il y a 2 mois', visite: 'Visité en juin', texte:
     "Un vrai professionnel avec un souci du détail et de la finition, sans parler de sa créativité qui nous pousse à grandir à ses côtés. Un plaisir de travailler en collaboration avec Fabien. Faites-en l'expérience, vous ne serez pas déçu !" },
-  { quand: 'il y a 2 mois', visite: 'Visité en avril 2024', texte:
+  { nom: 'Cédric', profil: '4 avis', quand: 'il y a 2 mois', visite: 'Visité en avril 2024', texte:
     "Fabien a su dessiner et réaliser ce que je recherchais pour la rénovation de la maison. Il a su être très disponible et à l'écoute. Je recommande fortement les services de Fabien pour de la création ou de la rénovation." },
-  { quand: 'il y a 2 semaines', visite: 'Visité en août', nouveau: true, texte:
+  { nom: 'Paul Burguière', profil: '3 avis', quand: 'il y a 2 semaines', visite: 'Visité en août', nouveau: true, texte:
     "Expériences diverses toutes particulièrement positives. Les grandes qualités d'écoute, de créativité et de rigueur sont propices à une collaboration enthousiasmante, efficace et des projets pleinement réussis, de la conception à la livraison. Relations constructives avec l'ensemble des acteurs des projets." },
-  { quand: 'il y a 2 semaines', visite: 'Visité en août', nouveau: true, texte:
+  { nom: 'Béatrice Giuglardo', profil: '9 avis', quand: 'il y a 2 semaines', visite: 'Visité en août', nouveau: true, texte:
     "J'ai déjà eu l'occasion de collaborer à plusieurs reprises avec Fabien, et cela a toujours été un vrai plaisir. À l'écoute, créatif et fort d'une solide expérience acquise sur des sujets très variés, il sait apporter des réponses pertinentes et adaptées à chaque projet. Je ne peux que le recommander chaleureusement à Toulouse !" },
-  { quand: 'il y a 4 semaines', visite: 'Visité en août', texte:
+  { nom: 'Benoît Laborie', profil: '1 avis', quand: 'il y a un mois', visite: 'Visité en août', texte:
     "Très bonnes idées de design et de conception pour mon projet de rénovation à Barcelone. Créatif et à l'écoute de mes besoins, avec un nouvel angle apporté sur différents sujets. Et de la polyvalence." },
-  { quand: 'il y a un mois', visite: 'Visité en juillet 2025', texte:
-    "J'ai eu l'occasion de collaborer avec Fabien sur plusieurs projets et j'ai toujours apprécié son professionnalisme, sa disponibilité et la qualité de son travail. Il est à l'écoute, force de proposition et sait parfaitement concilier les contraintes techniques avec une vraie sensibilité au design. Son approche de la conception et son suivi de chantier sont rigoureux, ce qui permet d'aborder les projets avec confiance." },
+  { nom: 'S00999 SSX', profil: 'Local Guide · 17 avis', quand: 'il y a un mois', visite: 'Visité en juillet 2025', texte:
+    "J'ai eu l'occasion de collaborer avec Fabien sur plusieurs projets et j'ai toujours apprécié son professionnalisme, sa disponibilité et la qualité de son travail. Il est à l'écoute, force de proposition et sait parfaitement concilier les contraintes techniques avec une vraie sensibilité au design. Son approche de la conception et son suivi de chantier sont rigoureux, ce qui permet d'aborder les projets avec confiance. Je recommande vivement Fabien à toute personne recherchant un architecte d'intérieur à Toulouse pour un projet de rénovation, d'aménagement ou de commerce." },
 ];
+
 
 const TICKER = ['Design d\'espaces', 'Mobilier spécifique', 'Signalétique', 'Étude chromatique',
   'Space planning', 'Suivi des études', 'Prototype', 'Aménagement'];
@@ -109,10 +110,10 @@ const carteAvis = (a) => `
     </div>
     <p class="tcard__quote">${a.texte}</p>
     <a class="tcard__foot" href="${GOOGLE_URL}" target="_blank" rel="noopener">
-      <span class="gmark" aria-hidden="true">G</span>
+      <span class="tcard__ava" aria-hidden="true">${a.nom.trim()[0].toUpperCase()}<i class="gbadge">G</i></span>
       <span class="tcard__who">
-        <strong>Avis Google${a.nouveau ? ' <em class="tag-new">Nouveau</em>' : ''}</strong>
-        <span>${a.quand} · ${a.visite}</span>
+        <strong>${a.nom}${a.nouveau ? ' <em class="tag-new">Nouveau</em>' : ''}</strong>
+        <span>${a.profil} · ${a.quand}</span>
       </span>
     </a>
   </article>`;
