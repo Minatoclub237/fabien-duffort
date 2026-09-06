@@ -765,3 +765,10 @@ main { position: relative; z-index: 1; background: var(--bg); }
   .reveal-fade, [data-hero] { opacity: 1; transform: none; }
   .hero__title .line > span { transform: none; }
 }
+
+.projects__head--nav {
+  display: flex; align-items: flex-end; justify-content: space-between; gap: 30px;
+}
+@media (max-width: 620px) {
+  .projects__head--nav { flex-direction: column; align-items: flex-start; gap: 22px; }
+}
