@@ -28,27 +28,105 @@ const SECTEURS = [
   { k: 'urbanisme',    n: 'Urbanisme',     img: 'urbanisme-2' },
 ];
 
+/* Les huit prestations nommées dans les fiches, avec le vocabulaire de mission
+   d’origine : FAISA, ESQ, AVP, PRO, DET, OPR. */
 const MISSIONS = [
   {
-    img: 'design-2', label: 'Mission courte', phase: 'Faisabilité',
-    titre: 'Diagnostic & étude de faisabilité',
-    pts: ['Relevé et analyse de l\'existant', 'Scénarios d\'aménagement', 'Estimation d\'enveloppe', 'Note de faisabilité illustrée'],
+    "img": "design-2",
+    "label": "Étude",
+    "phase": "FAISA · ESQ",
+    "titre": "Faisabilité & diagnostic",
+    "pts": [
+      "Relevé et analyse de l’existant",
+      "Scénarios d’aménagement",
+      "Estimation d’enveloppe",
+      "Note de faisabilité illustrée"
+    ]
   },
   {
-    img: 'tertiaire-5', label: 'Mission cadre', phase: 'AVP → PRO',
-    titre: 'Aménagement & space planning',
-    pts: ['Programmation des surfaces', 'Plans d\'aménagement', 'Étude chromatique', 'Représentation 3D'],
+    "img": "tertiaire-5",
+    "label": "Conception",
+    "phase": "AVP · PRO",
+    "titre": "Aménagement & space planning",
+    "pts": [
+      "Programmation des surfaces",
+      "Plans d’aménagement",
+      "Définition des espaces d’accueil",
+      "Dossier d’avant-projet"
+    ]
   },
   {
-    img: 'transport-6', label: 'Mission spécifique', phase: 'Design',
-    titre: 'Mobilier spécifique & prototype',
-    pts: ['Dessin du mobilier', 'Choix des matériaux', 'Suivi des études de fabrication', 'Prototype et mise au point'],
+    "img": "transport-6",
+    "label": "Conception",
+    "phase": "Design",
+    "titre": "Mobilier spécifique",
+    "pts": [
+      "Dessin du mobilier sur mesure",
+      "Choix des matériaux",
+      "Suivi des études de fabrication",
+      "Banques d’accueil et agencements"
+    ]
   },
   {
-    img: 'signaletique-6', label: 'Mission complète', phase: 'DET → OPR',
-    titre: 'Direction & suivi des études',
-    pts: ['Pilotage des études', 'Coordination des partenaires', 'Visites de chantier', 'Conformité architecturale'],
+    "img": "design-3",
+    "label": "Conception",
+    "phase": "Prototype",
+    "titre": "Prototypage & mise au point",
+    "pts": [
+      "Fabrication d’un prototype",
+      "Essais en situation",
+      "Corrections avant série",
+      "Luminaires et pièces uniques"
+    ]
   },
+  {
+    "img": "enseignement-4",
+    "label": "Conception",
+    "phase": "Étude",
+    "titre": "Étude chromatique",
+    "pts": [
+      "Palette par service et par usage",
+      "Repérage des circulations",
+      "Nuanciers et calepinage",
+      "Applications murs, sols, mobilier"
+    ]
+  },
+  {
+    "img": "signaletique-6",
+    "label": "Conception",
+    "phase": "Étude",
+    "titre": "Signalétique",
+    "pts": [
+      "Schéma directeur d’orientation",
+      "Design des supports",
+      "Signalétique événementielle",
+      "Suivi de fabrication et pose"
+    ]
+  },
+  {
+    "img": "tertiaire-1",
+    "label": "Représentation",
+    "phase": "3D",
+    "titre": "Représentation 3D",
+    "pts": [
+      "Vues d’ambiance",
+      "Images de concours",
+      "Validation des volumes",
+      "Support de décision maître d’ouvrage"
+    ]
+  },
+  {
+    "img": "sante-6",
+    "label": "Chantier",
+    "phase": "DET · OPR",
+    "titre": "Direction & suivi des études",
+    "pts": [
+      "Pilotage des études",
+      "Coordination des partenaires",
+      "Visites de chantier",
+      "Conformité architecturale des travaux"
+    ]
+  }
 ];
 
 /* Avis Google réels de Fabien Duffort, repris tels quels.

@@ -5,6 +5,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { PROJETS, SECTEURS } from '../src/projets.js';
+import { agregats } from './cabinet.mjs';
 
 const RACINE = path.dirname(fileURLToPath(import.meta.url)) + '/..';
 const e = (s) => String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
@@ -25,7 +26,7 @@ ${extra}</head>
     <span class="nav__name">Fabien Duffort</span>
   </a>
   <nav class="nav__links">
-    <a href="/#apropos">À propos</a>
+    <a href="/cabinet/">Le cabinet</a>
     <a href="/#savoir-faire">Savoir-faire</a>
     <a href="/projets/">Projets</a>
     <a href="/#contact">Contact</a>
@@ -45,7 +46,7 @@ const PIED = `
       </div>
       <div>
         <h4>Navigation</h4>
-        <a href="/#apropos">À propos</a><a href="/projets/">Tous les projets</a><a href="/#contact">Contact</a>
+        <a href="/cabinet/">Le cabinet</a><a href="/projets/">Tous les projets</a><a href="/#contact">Contact</a>
       </div>
       <div>
         <h4>Contact</h4>
@@ -176,7 +177,118 @@ const pageProjet = (p, suivant) => TETE(
 </main>
 ` + PIED;
 
+/* ── page « Le cabinet » ────────────────────────────── */
+const A = agregats();
+
+const pageCabinet = () => TETE(
+  'Le cabinet — Fabien DUFFORT | Architecte d’intérieur & Designer Toulouse',
+  `Vingt-cinq ans de projets, ${A.clients.length} maîtres d'ouvrage, ${A.concours.length} concours. Design d'espaces, mobilier spécifique, signalétique et space planning à Toulouse.`,
+  'cabinet',
+  '  <script type="module" src="/src/cabinet.js"></script>\n',
+) + `
+<main class="cb">
+  <section class="cb__hero">
+    <div class="wrap">
+      <span class="eyebrow"><i class="eyebrow__dot"></i> Le cabinet</span>
+      <h1 class="titre-geant" data-split>De ${A.de} à ${A.a},<br />sans changer de méthode</h1>
+    </div>
+    <div class="wrap cb__manifeste">
+      <p data-mots>Dessiner un lieu, c’est d’abord comprendre comment on y entre, où l’on attend,
+        ce que l’on cherche du regard. Le reste — la matière, la couleur, le mobilier, la lettre
+        d’un panneau — vient répondre à ça. C’est vrai pour un stade de trente mille places
+        comme pour une officine de quartier.</p>
+    </div>
+  </section>
+
+  <section class="cb__chiffres">
+    <div class="wrap cb__chiffresGrille">
+      ${[[A.total, 'projets référencés'], [A.programmes, 'programmes'],
+         [A.clients.length, 'maîtres d’ouvrage'], [A.partenaires.length, 'partenaires d’études'],
+         [A.a - A.de, 'ans de pratique']]
+        .map(([n, l]) => `<div class="cb__chiffre"><strong data-n="${n}">0</strong><span>${l}</span></div>`).join('\n      ')}
+    </div>
+  </section>
+
+  <section class="cb__clients" id="clients">
+    <div class="wrap">
+      <span class="eyebrow">— Maîtres d’ouvrage</span>
+      <h2 class="titre-moyen">Ils ont confié leurs lieux au projet</h2>
+    </div>
+    <div class="cb__liste" id="listeClients">
+      ${A.clients.map((c, i) => `<a class="cb__ligne" href="/projets/${c.slug}/" data-img="/img/p/${c.img}" data-curseur>
+        <span class="cb__no">${String(i + 1).padStart(2, '0')}</span>
+        <span class="cb__nom">${e(c.nom)}</span>
+        <span class="cb__n">${c.n} projet${c.n > 1 ? 's' : ''}</span>
+      </a>`).join('\n      ')}
+    </div>
+    <figure class="cb__flotte" id="flotte"><img alt="" /></figure>
+  </section>
+
+  <section class="cb__concours">
+    <div class="wrap">
+      <span class="eyebrow">— Concours</span>
+      <h2 class="titre-moyen">${A.concours.length} concours, ${A.laureats} remportés</h2>
+      <div class="cb__cc">
+        ${A.concours.map((p) => `<a class="cb__ccLigne${/Lauréat/.test(p.statut) ? ' is-laureat' : ''}" href="/projets/${p.slug}/" data-curseur>
+          <span class="cb__ccAn">${e((String(p.annee || '').match(/\d{4}/) || ['—'])[0])}</span>
+          <span class="cb__ccNom">${e(p.titre)}</span>
+          <span class="cb__ccMo">${e(p.mo || '')}</span>
+          <span class="cb__ccSt">${e(p.statut)}</span>
+        </a>`).join('\n        ')}
+      </div>
+    </div>
+  </section>
+
+  <section class="cb__part">
+    <div class="wrap"><span class="eyebrow">— Partenaires d’études</span></div>
+    <div class="cb__ruban" data-sens="1"><div class="cb__rubanRail">${
+      A.partenaires.filter((_, i) => i % 2 === 0).map((p) => `<span>${e(p.nom)}</span>`).join('')
+    }</div></div>
+    <div class="cb__ruban" data-sens="-1"><div class="cb__rubanRail">${
+      A.partenaires.filter((_, i) => i % 2 === 1).map((p) => `<span>${e(p.nom)}</span>`).join('')
+    }</div></div>
+  </section>
+
+  <section class="cb__geo">
+    <div class="wrap">
+      <span class="eyebrow">— Où j’interviens</span>
+      <h2 class="titre-moyen">${A.villes.length} villes, un ancrage</h2>
+      <div class="cb__villes">
+        ${A.villes.map((v) => `<span class="cb__ville" data-p="${v.n}"><em>${e(v.nom)}</em><i>${v.n}</i></span>`).join('\n        ')}
+      </div>
+    </div>
+  </section>
+
+  <section class="cb__labels">
+    <div class="wrap">
+      <span class="eyebrow">— Démarches &amp; méthodes</span>
+      <div class="cb__lb">
+        ${[['HQE', 'Haute qualité environnementale', 'Les Terrasses de Badiou et le bâtiment de la direction des ressources humaines des Armées ont été menés sous label HQE.'],
+           ['BREEAM', 'Very Good', 'L’extension du mail de Pau-Lescar a été conduite en démarche environnementale BREEAM Very Good.'],
+           ['BIM', 'Maquette numérique', 'Méthodologie BIM sur les opérations de conception-réalisation, du logement social au bâtiment tertiaire d’État.'],
+           ['MOP', 'Loi maîtrise d’ouvrage publique', 'Missions conduites dans le cadre réglementaire de la commande publique, de la faisabilité à la réception.']]
+          .map(([t, s, d]) => `<article class="cb__lbCarte" data-tilt>
+          <strong>${t}</strong><span>${s}</span><p>${d}</p>
+        </article>`).join('\n        ')}
+      </div>
+    </div>
+  </section>
+
+  <section class="cb__fin">
+    <div class="wrap">
+      <h2 class="titre-geant" data-split>Un lieu à dessiner ?</h2>
+      <div class="cb__finCta">
+        <a class="btn btn--lg" href="tel:+33661935426"><span>06 61 93 54 26</span><i class="btn__arrow"></i></a>
+        <a class="btn btn--ghost btn--lg" href="/projets/"><span>Voir les 49 projets</span><i class="btn__arrow"></i></a>
+      </div>
+    </div>
+  </section>
+</main>
+` + PIED;
+
 /* ── écriture ───────────────────────────────────────── */
+fs.mkdirSync(`${RACINE}/cabinet`, { recursive: true });
+fs.writeFileSync(`${RACINE}/cabinet/index.html`, pageCabinet());
 fs.mkdirSync(`${RACINE}/projets`, { recursive: true });
 fs.writeFileSync(`${RACINE}/projets/index.html`, pagePortfolio());
 PROJETS.forEach((p, i) => {

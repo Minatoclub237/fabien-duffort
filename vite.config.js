@@ -4,7 +4,7 @@ import path from 'node:path';
 
 /* Chaque page projet est un point d'entrée : Vite les construit toutes. */
 const pages = Object.fromEntries(
-  globSync('projets/**/index.html').map((f) => [f.replace(/[\/]/g, '_'), path.resolve(f)]),
+  globSync('{projets,cabinet}/**/index.html').map((f) => [f.replace(/[\/]/g, '_'), path.resolve(f)]),
 );
 
 export default defineConfig({
