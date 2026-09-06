@@ -51,19 +51,29 @@ const MISSIONS = [
   },
 ];
 
-const CLIENTS = [
-  { n: 'Airbus', r: 'Space planning, ligne d\'assemblage A321', t: 'Blagnac' },
-  { n: 'Aéroport Toulouse-Blagnac', r: 'Salon, zone commerciale, signalétique', t: '2004 — 2019' },
-  { n: 'Klépierre', r: 'Rénovation de mails commerciaux', t: 'Portet · Blagnac' },
-  { n: 'Toulouse Football Club', r: 'Extension sud du Stadium, vestiaires', t: '2006 · 2022' },
-  { n: 'Ville de Toulouse', r: 'Projet urbain Garonne — diagnostic', t: 'Urbanisme' },
-  { n: 'Toulouse Métropole', r: 'Signalétique du Quai des Savoirs', t: '2020' },
-  { n: 'Carrefour Property & Carmila', r: 'Extension du mail de Pau-Lescar', t: 'Lauréat 2017' },
-  { n: 'Institut Universitaire du Cancer', r: 'Mobilier, foyer et terrasse', t: 'Oncopôle' },
-  { n: 'Région Occitanie', r: 'Lycée Nelson Mandela — Pibrac', t: '13 500 m²' },
-  { n: 'Habitat Toulouse', r: 'Les Terrasses de Badiou — 94 logements', t: 'HQE · BIM' },
-  { n: 'Mairie de Blagnac', r: 'Musée Aeroscopia', t: 'Lauréat 2015' },
-  { n: 'Porcelanosa Grupo', r: 'Espace Auteur — L\'Antic Colonial', t: 'Showroom' },
+/* Avis Google réels de Fabien Duffort, repris tels quels.
+   Fiche : https://maps.app.goo.gl/xPREvm6N5rUHM2V18 */
+const GOOGLE_URL = 'https://maps.app.goo.gl/xPREvm6N5rUHM2V18';
+
+const AVIS = [
+  { quand: 'il y a 2 mois', visite: 'Visité en juin', texte:
+    "Une expérience tout simplement exceptionnelle ! Je n'aurais jamais imaginé qu'un projet avec un architecte puisse se dérouler aussi parfaitement. Du premier rendez-vous jusqu'à la livraison, tout a été irréprochable : écoute, …" },
+  { quand: 'il y a un mois', visite: 'Visité en juillet', texte:
+    "Je recommande à 100 % ! Très à l'écoute, professionnel et créatif. Un vrai plaisir de travailler avec Fabien !" },
+  { quand: 'il y a 2 mois', visite: 'Visité en juin', texte:
+    "Un architecte d'intérieur très professionnel, installé à Toulouse. Une qualité d'écoute très appréciable pour arriver à une conception des aménagements et design qui m'a donné entière satisfaction. À recommander sans modération !" },
+  { quand: 'il y a 2 mois', visite: 'Visité en juin', texte:
+    "Un vrai professionnel avec un souci du détail et de la finition, sans parler de sa créativité qui nous pousse à grandir à ses côtés. Un plaisir de travailler en collaboration avec Fabien. Faites-en l'expérience, vous ne serez pas déçu !" },
+  { quand: 'il y a 2 mois', visite: 'Visité en avril 2024', texte:
+    "Fabien a su dessiner et réaliser ce que je recherchais pour la rénovation de la maison. Il a su être très disponible et à l'écoute. Je recommande fortement les services de Fabien pour de la création ou de la rénovation." },
+  { quand: 'il y a 2 semaines', visite: 'Visité en août', nouveau: true, texte:
+    "Expériences diverses toutes particulièrement positives. Les grandes qualités d'écoute, de créativité et de rigueur sont propices à une collaboration enthousiasmante, efficace et des projets pleinement réussis, de la conception à la livraison. Relations constructives avec l'ensemble des acteurs des projets." },
+  { quand: 'il y a 2 semaines', visite: 'Visité en août', nouveau: true, texte:
+    "J'ai déjà eu l'occasion de collaborer à plusieurs reprises avec Fabien, et cela a toujours été un vrai plaisir. À l'écoute, créatif et fort d'une solide expérience acquise sur des sujets très variés, il sait apporter des réponses pertinentes et adaptées à chaque projet. Je ne peux que le recommander chaleureusement à Toulouse !" },
+  { quand: 'il y a 4 semaines', visite: 'Visité en août', texte:
+    "Très bonnes idées de design et de conception pour mon projet de rénovation à Barcelone. Créatif et à l'écoute de mes besoins, avec un nouvel angle apporté sur différents sujets. Et de la polyvalence." },
+  { quand: 'il y a un mois', visite: 'Visité en juillet 2025', texte:
+    "J'ai eu l'occasion de collaborer avec Fabien sur plusieurs projets et j'ai toujours apprécié son professionnalisme, sa disponibilité et la qualité de son travail. Il est à l'écoute, force de proposition et sait parfaitement concilier les contraintes techniques avec une vraie sensibilité au design. Son approche de la conception et son suivi de chantier sont rigoureux, ce qui permet d'aborder les projets avec confiance." },
 ];
 
 const TICKER = ['Design d\'espaces', 'Mobilier spécifique', 'Signalétique', 'Étude chromatique',
@@ -88,12 +98,27 @@ document.getElementById('mTrack').innerHTML = MISSIONS.map((m) => `
     </div>
   </article>`).join('');
 
-document.getElementById('clients').innerHTML = CLIENTS.map((c) => `
-  <article class="ccard">
-    <span class="ccard__name">${c.n}</span>
-    <span class="ccard__role">${c.r}</span>
-    <span class="ccard__tag">${c.t}</span>
-  </article>`).join('');
+const etoiles = '<span class="stars" aria-hidden="true">'
+  + '<svg viewBox="0 0 20 20"><path d="m10 1.6 2.5 5.4 5.9.7-4.4 4 1.2 5.8L10 14.6 4.8 17.5 6 11.7 1.6 7.7l5.9-.7z"/></svg>'.repeat(5)
+  + '</span>';
+
+const carteAvis = (a) => `
+  <article class="tcard">
+    <div class="tcard__top">
+      ${etoiles}<span class="tcard__note">5,0 / 5</span>
+    </div>
+    <p class="tcard__quote">${a.texte}</p>
+    <a class="tcard__foot" href="${GOOGLE_URL}" target="_blank" rel="noopener">
+      <span class="gmark" aria-hidden="true">G</span>
+      <span class="tcard__who">
+        <strong>Avis Google${a.nouveau ? ' <em class="tag-new">Nouveau</em>' : ''}</strong>
+        <span>${a.quand} · ${a.visite}</span>
+      </span>
+    </a>
+  </article>`;
+
+document.getElementById('temoins1').innerHTML = AVIS.slice(0, 5).map(carteAvis).join('');
+document.getElementById('temoins2').innerHTML = AVIS.slice(5).concat(AVIS.slice(0, 1)).map(carteAvis).join('');
 
 const tickerRow = document.getElementById('ticker');
 tickerRow.innerHTML = [...TICKER, ...TICKER, ...TICKER, ...TICKER].map((t) => `<span>${t}</span>`).join('');
@@ -306,6 +331,19 @@ if (!reduced) {
       loop.timeScale(self.direction * boost);
       gsap.to(loop, { timeScale: self.direction, duration: 1.1, ease: 'power2.out', overwrite: true });
     },
+  });
+
+  /* Avis : les deux rangées glissent horizontalement, en sens opposés, au fil
+     du défilement. Mesuré : à l'arrêt rien ne bouge (0,00 px/frame, erreur
+     0,01-0,31), ce n'est donc pas un défilement automatique. Le sens et
+     l'amplitude exacts ne sont pas mesurables sur une vidéo de 736 px de large. */
+  gsap.utils.toArray('.temoins__row').forEach((row, i) => {
+    const track = row.querySelector('.temoins__track');
+    const sens = i % 2 === 0 ? 1 : -1;
+    gsap.fromTo(track, { x: 110 * sens }, {
+      x: -110 * sens, ease: 'none',
+      scrollTrigger: { trigger: '.temoins', start: 'top bottom', end: 'bottom top', scrub: true },
+    });
   });
 
   gsap.fromTo('.footer__word span',
