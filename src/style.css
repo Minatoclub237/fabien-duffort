@@ -606,9 +606,11 @@ main { position: relative; z-index: 1; background: var(--bg); }
 /* ══════════════════════════════════════════
    ÉTATS D'ANIMATION
    ══════════════════════════════════════════ */
-.reveal-fade { opacity: 0; transform: translateY(18px); }
-/* Le décalage de départ des lignes du hero est posé par GSAP (yPercent) :
-   en CSS, getComputedStyle le renvoie en pixels et GSAP lirait yPercent = 0. */
+/* Aucun état masqué sur le contenu des sections : la vidéo de référence ne
+   contient pas d'animation d'entrée (ni fondu, ni glissement, ni échelle).
+   Seul le hero a une entrée, au premier affichage de la page.
+   Le décalage de départ de ses lignes est posé par GSAP (yPercent) : en CSS,
+   getComputedStyle le renvoie en pixels et GSAP lirait yPercent = 0. */
 [data-hero] { opacity: 0; }
 
 /* ══════════════════════════════════════════

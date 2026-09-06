@@ -103,9 +103,15 @@ document.getElementById('year').textContent = new Date().getFullYear();
 /* ══════════════════════════════════════════
    2. Défilement fluide (natif, jamais capturé)
    ══════════════════════════════════════════ */
+/* Profil mesuré sur la vidéo (deltas de scroll par pas de 100 ms, après la
+   dernière impulsion de molette) : 40 → 20 → 10 → 5 → 2 → 1 → 0.
+   Le reste est divisé par deux tous les 100 ms : demi-vie = 100 ms.
+   Avec l'easing exponentiel de Lenis, la fraction restante vaut 2^(-10t/d),
+   donc le ratio sur 100 ms est 2^(-1/d) ; ratio 0,5 ⇒ d = 1,0.
+   Vérifié en lisant scrollY toutes les 100 ms sur ce site. */
 let lenis = null;
 if (!reduced) {
-  lenis = new Lenis({ duration: 1.05, smoothWheel: true, touchMultiplier: 1.6 });
+  lenis = new Lenis({ duration: 1.0, smoothWheel: true, touchMultiplier: 1.6 });
   lenis.on('scroll', ScrollTrigger.update);
   gsap.ticker.add((t) => lenis.raf(t * 1000));
   gsap.ticker.lagSmoothing(0);
@@ -170,78 +176,31 @@ ScrollTrigger.create({
 });
 
 /* ══════════════════════════════════════════
-   5. Révélations
+   5. Contenu des sections : AUCUNE animation d'entrée
+   ══════════════════════════════════════════
+
+   Mesuré image par image sur la vidéo de référence, sections « projets »,
+   « work process », « témoignages », « articles », « à propos », « missions » :
+
+   · positions x des images : figées (petite 279-346, grande 351-522 — 30 fps,
+     aucune frame ne s'écarte) → pas de glissement latéral ;
+   · largeurs et hauteurs : figées (67×80 et 171×166) → pas d'échelle, pas de
+     volet qui s'ouvre ;
+   · luminance / écart-type d'une image pendant toute son entrée :
+     171,3 → 171,8 et 33,0 → 32,8 → pas de fondu, pleine opacité d'emblée ;
+   · déplacement de chaque bloc = déplacement du scroll, au pixel près
+     → pas de parallaxe, pas de décalage d'entrée ;
+   · scroll à 0 pendant 1,3 s (23,4 → 24,7 s) : blocs strictement immobiles
+     → rien ne s'anime tout seul.
+
+   Ce qui donne l'impression de « cartes qui apparaissent » dans la vidéo est
+   le défilement inertiel lui-même (§2), pas une animation d'élément.
+   On ne rajoute donc rien ici.
    ══════════════════════════════════════════ */
-if (!reduced) {
-  // titres : glissement vertical ligne par ligne
-  document.querySelectorAll('.h2.reveal').forEach((h) => {
-    gsap.from(h.querySelectorAll('.line > span'), {
-      yPercent: 108, duration: 1.05, ease: 'expo.out', stagger: 0.08,
-      scrollTrigger: { trigger: h, start: 'top 88%', once: true },
-    });
-  });
 
-  // blocs de texte
-  gsap.utils.toArray('.reveal-fade').forEach((el) => {
-    gsap.to(el, {
-      opacity: 1, y: 0, duration: 1, ease: 'expo.out',
-      scrollTrigger: { trigger: el, start: 'top 90%', once: true },
-    });
-  });
-
-  // cartes : apparition décalée
-  [['.pcard', '.process__grid'], ['.ccard', '.clients__grid'], ['.acard', '.awards__grid']]
-    .forEach(([sel, parent]) => {
-      gsap.from(sel, {
-        y: 34, opacity: 0, duration: 1, ease: 'expo.out', stagger: 0.07,
-        scrollTrigger: { trigger: parent, start: 'top 85%', once: true },
-      });
-    });
-
-  gsap.from('.about__fig, .about__stats', {
-    y: 44, opacity: 0, duration: 1.1, ease: 'expo.out', stagger: 0.09,
-    scrollTrigger: { trigger: '.about__grid', start: 'top 85%', once: true },
-  });
-
-  gsap.from('.project', {
-    y: 40, opacity: 0, duration: 1.05, ease: 'expo.out',
-    scrollTrigger: { trigger: '.projects__head', start: 'top 70%', once: true },
-    stagger: 0.06,
-  });
-}
-
-/* ── compteurs ─────────────────────────── */
 document.querySelectorAll('.stat__num').forEach((el) => {
-  const to = +el.dataset.count;
-  const suffix = el.dataset.suffix || '';
-  ScrollTrigger.create({
-    trigger: el, start: 'top 92%', once: true,
-    onEnter: () => {
-      if (reduced) { el.textContent = to + suffix; return; }
-      const o = { v: 0 };
-      gsap.to(o, {
-        v: to, duration: 1.6, ease: 'power2.out',
-        onUpdate: () => { el.textContent = Math.round(o.v) + suffix; },
-      });
-    },
-  });
+  el.textContent = el.dataset.count + (el.dataset.suffix || '');
 });
-
-/* ══════════════════════════════════════════
-   6. Parallaxe d'images
-   ══════════════════════════════════════════ */
-if (!reduced) {
-  gsap.utils.toArray('.parallax').forEach((fig) => {
-    const img = fig.querySelector('img');
-    if (!img) return;
-    gsap.fromTo(img,
-      { yPercent: -8, scale: 1.16 },
-      {
-        yPercent: 8, ease: 'none',
-        scrollTrigger: { trigger: fig, start: 'top bottom', end: 'bottom top', scrub: true },
-      });
-  });
-}
 
 /* ══════════════════════════════════════════
    7. Savoir-faire : piste horizontale épinglée
@@ -266,12 +225,6 @@ function buildServices() {
     },
   });
   svcST = tween.scrollTrigger;
-
-  // les cartes se redressent en entrant dans le cadre
-  gsap.fromTo('.svc', { y: 26, opacity: 0 }, {
-    y: 0, opacity: 1, duration: 0.9, ease: 'expo.out', stagger: 0.06,
-    scrollTrigger: { trigger: '.services', start: 'top 65%', once: true },
-  });
 }
 buildServices();
 
@@ -332,19 +285,8 @@ buildServices();
     target = 50;
     if (!raf) raf = requestAnimationFrame(draw);
   });
-
-  // balayage d'amorce quand la section entre à l'écran
-  if (!reduced) {
-    ScrollTrigger.create({
-      trigger: box, start: 'top 75%', once: true,
-      onEnter: () => {
-        gsap.timeline()
-          .to({ v: 50 }, { v: 78, duration: 1.1, ease: 'power2.inOut', onUpdate() { target = this.targets()[0].v; if (!raf) raf = requestAnimationFrame(draw); } })
-          .to({ v: 78 }, { v: 32, duration: 1.2, ease: 'power2.inOut', onUpdate() { target = this.targets()[0].v; if (!raf) raf = requestAnimationFrame(draw); } })
-          .to({ v: 32 }, { v: 50, duration: 0.9, ease: 'power2.inOut', onUpdate() { target = this.targets()[0].v; if (!raf) raf = requestAnimationFrame(draw); } });
-      },
-    });
-  }
+  // Pas de balayage automatique : dans la vidéo, le volet ne bouge que sous le
+  // curseur (18,2 → 21,5 s, le pointeur est visible sur chaque frame).
 })();
 
 /* ══════════════════════════════════════════
