@@ -372,12 +372,21 @@ main { position: relative; z-index: 1; background: var(--bg); }
    ══════════════════════════════════════════ */
 .projects { background: var(--surface); }
 .projects__head { margin-bottom: clamp(38px, 5vw, 62px); }
+
+/* Empilement collant : chaque ligne se fige sous la barre de navigation et la
+   suivante vient la recouvrir. Mesuré sur la vidéo — pendant une rafale de
+   107 px de scroll, le bloc du haut ne bouge pas (65→81) tandis que celui du
+   bas remonte de 106 px, soit la totalité du défilement. */
 .project {
+  position: sticky;
+  top: clamp(86px, 13.5vh, 148px);
   display: grid; grid-template-columns: .82fr 1.18fr;
   gap: clamp(24px, 4vw, 60px);
   padding-block: clamp(30px, 4vw, 48px);
   border-top: 1px solid var(--line-soft);
   align-items: center;
+  background: var(--surface);
+  box-shadow: 0 -22px 44px -34px rgba(23, 18, 15, .5);
 }
 .project--flip .project__info { order: 2; }
 .project__info h3 { font-size: clamp(1.3rem, 2vw, 1.72rem); margin-bottom: 14px; }
@@ -629,7 +638,12 @@ main { position: relative; z-index: 1; background: var(--bg); }
 @media (max-width: 860px) {
   .nav { padding: 8px 8px 8px 14px; }
   .nav__links { display: none; }
-  .project, .project--flip { grid-template-columns: 1fr; }
+  /* les lignes sont trop hautes pour s'empiler proprement sur petit écran */
+  .project, .project--flip {
+    grid-template-columns: 1fr;
+    position: static;
+    box-shadow: none;
+  }
   .project--flip .project__info { order: 0; }
   .method__card { position: static; width: 100%; border-radius: 0 0 var(--r-card) var(--r-card); }
   .method__body { border-radius: var(--r-card); }
