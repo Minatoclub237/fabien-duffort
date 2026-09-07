@@ -65,7 +65,11 @@
 <div class="hero-wrap" id="top">
   <section class="hero">
     <div class="hero__media">
-      <img src="/img/p/airbus-l14-blagnac-2.webp" alt="Hall d'accueil aménagé, projet tertiaire" width="1250" height="694" fetchpriority="high" />
+      <video class="hero__video" autoplay muted loop playsinline preload="auto"
+             poster="/video/hero-poster.webp" aria-label="Hall d'accueil aménagé, projet tertiaire">
+        <source src="/video/hero.webm" type="video/webm" />
+        <source src="/video/hero.mp4" type="video/mp4" />
+      </video>
     </div>
     <div class="hero__veil"></div>
     <div class="hero__inner">
@@ -443,28 +447,171 @@
     </div>
   </section>
 
-  <!-- ═══ APPEL FINAL ═══ -->
+  <!-- ═══ CONTACT ═══ -->
   <section class="cta section" id="contact">
-    <div class="wrap cta__inner">
-      <div>
-        <h2 class="h2 reveal">
-          <span class="line"><span>Un lieu à dessiner,</span></span>
-          <span class="line"><span>une étude à reprendre ?</span></span>
-        </h2>
-        <p class="cta__lead">Envoyez le programme, les plans ou simplement l'intention de départ.</p>
-      </div>
-      <div class="cta__side">
-        <div class="avatars">
-          <img src="/img/tertiaire-5.webp" alt="" loading="lazy" />
-          <img src="/img/sante-6.webp" alt="" loading="lazy" />
-          <img src="/img/transport-4.webp" alt="" loading="lazy" />
-          <span class="avatars__more">FD</span>
-        </div>
-        <a class="btn btn--lg" href="tel:+33661935426">
-          <span>06 61 93 54 26</span>
-          <i class="btn__arrow" aria-hidden="true"></i>
+    <div class="wrap ct">
+      <aside class="ct__aside">
+        <span class="eyebrow">— Contact</span>
+        <h2 class="h2">Parlons de votre projet</h2>
+        <p class="ct__lead">
+          Décrivez le lieu, le programme et l'échéance. Je reviens vers vous sous
+          48 heures ouvrées avec une première lecture et les phases d'étude adaptées.
+        </p>
+
+        <ul class="ct__direct">
+          <li>
+            <span class="ct__label">Téléphone</span>
+            <a href="tel:+33661935426">+33 6 61 93 54 26</a>
+          </li>
+          <li>
+            <span class="ct__label">Atelier</span>
+            <a href="https://maps.app.goo.gl/xPREvm6N5rUHM2V18" target="_blank" rel="noopener">
+              48 rue de Puymaurin<br />31400 Toulouse
+            </a>
+          </li>
+          <li>
+            <span class="ct__label">Interventions</span>
+            <span>Toulouse et Occitanie, France entière sur consultation</span>
+          </li>
+        </ul>
+
+        <a class="ct__note" href="https://maps.app.goo.gl/xPREvm6N5rUHM2V18" target="_blank" rel="noopener">
+          <span class="stars" aria-hidden="true"></span>
+          <span><strong>5,0 sur 5</strong> — 9 avis Google</span>
         </a>
-      </div>
+      </aside>
+
+      <form class="ct__form" id="formContact" novalidate>
+        <div class="ct__grille">
+          <div class="champ champ--plein">
+            <span class="champ__t">Vous êtes</span>
+            <div class="segments" role="radiogroup" aria-label="Vous êtes">
+              <label><input type="radio" name="profil" value="Particulier" checked /><span>Particulier</span></label>
+              <label><input type="radio" name="profil" value="Entreprise ou commerce" /><span>Entreprise ou commerce</span></label>
+              <label><input type="radio" name="profil" value="Maîtrise d'ouvrage publique" /><span>Maîtrise d'ouvrage publique</span></label>
+              <label><input type="radio" name="profil" value="Architecte ou bureau d'études" /><span>Architecte ou BET</span></label>
+            </div>
+          </div>
+
+          <div class="champ">
+            <label for="c-nom">Nom et prénom <i>*</i></label>
+            <input id="c-nom" name="nom" type="text" autocomplete="name" required />
+            <em class="champ__err"></em>
+          </div>
+          <div class="champ">
+            <label for="c-mail">E-mail <i>*</i></label>
+            <input id="c-mail" name="email" type="email" autocomplete="email" required />
+            <em class="champ__err"></em>
+          </div>
+          <div class="champ">
+            <label for="c-tel">Téléphone</label>
+            <input id="c-tel" name="telephone" type="tel" autocomplete="tel" />
+            <em class="champ__err"></em>
+          </div>
+          <div class="champ">
+            <label for="c-lieu">Localisation du projet</label>
+            <input id="c-lieu" name="lieu" type="text" placeholder="Ville ou code postal" />
+            <em class="champ__err"></em>
+          </div>
+
+          <div class="champ">
+            <label for="c-prog">Type de programme <i>*</i></label>
+            <select id="c-prog" name="programme" required>
+              <option value="">Choisir…</option>
+              <option>Logement — maison ou appartement</option>
+              <option>Commerce</option>
+              <option>Tertiaire — bureaux</option>
+              <option>Santé</option>
+              <option>Enseignement</option>
+              <option>Culture</option>
+              <option>Sport</option>
+              <option>Transport</option>
+              <option>Signalétique</option>
+              <option>Design mobilier</option>
+              <option>Urbanisme</option>
+              <option>Autre / je ne sais pas encore</option>
+            </select>
+            <em class="champ__err"></em>
+          </div>
+          <div class="champ">
+            <label for="c-surf">Surface approximative</label>
+            <div class="champ__unite">
+              <input id="c-surf" name="surface" type="number" min="1" step="1" inputmode="numeric" />
+              <span>m²</span>
+            </div>
+            <em class="champ__err"></em>
+          </div>
+
+          <div class="champ">
+            <label for="c-budget">Budget travaux estimé</label>
+            <select id="c-budget" name="budget">
+              <option value="">Non défini</option>
+              <option>Moins de 50 000 €</option>
+              <option>50 000 à 150 000 €</option>
+              <option>150 000 à 500 000 €</option>
+              <option>500 000 € à 2 M€</option>
+              <option>Plus de 2 M€</option>
+            </select>
+            <em class="champ__err"></em>
+          </div>
+          <div class="champ">
+            <label for="c-quand">Échéance souhaitée</label>
+            <select id="c-quand" name="echeance">
+              <option value="">Non définie</option>
+              <option>Dès que possible</option>
+              <option>Dans les 3 mois</option>
+              <option>Dans les 6 mois</option>
+              <option>Dans l'année</option>
+              <option>Simple prise de renseignements</option>
+            </select>
+            <em class="champ__err"></em>
+          </div>
+
+          <div class="champ champ--plein">
+            <span class="champ__t">Nature de la mission <small>plusieurs choix possibles</small></span>
+            <div class="cases">
+              <label><input type="checkbox" name="mission" value="Faisabilité et diagnostic" /><span>Faisabilité &amp; diagnostic</span></label>
+              <label><input type="checkbox" name="mission" value="Aménagement et space planning" /><span>Aménagement &amp; space planning</span></label>
+              <label><input type="checkbox" name="mission" value="Mobilier spécifique" /><span>Mobilier spécifique</span></label>
+              <label><input type="checkbox" name="mission" value="Étude chromatique" /><span>Étude chromatique</span></label>
+              <label><input type="checkbox" name="mission" value="Signalétique" /><span>Signalétique</span></label>
+              <label><input type="checkbox" name="mission" value="Représentation 3D" /><span>Représentation 3D</span></label>
+              <label><input type="checkbox" name="mission" value="Suivi des études et de chantier" /><span>Suivi des études et de chantier</span></label>
+            </div>
+          </div>
+
+          <div class="champ champ--plein">
+            <label for="c-msg">Votre projet en quelques lignes <i>*</i></label>
+            <textarea id="c-msg" name="message" rows="5" required
+              placeholder="L'existant, ce que vous souhaitez transformer, les contraintes connues…"></textarea>
+            <em class="champ__err"></em>
+            <span class="champ__compte"><b id="cptMsg">0</b> / 1500</span>
+          </div>
+
+          <div class="champ champ--plein">
+            <label class="rgpd">
+              <input type="checkbox" name="rgpd" required />
+              <span>J'accepte que mes informations soient utilisées pour répondre à ma demande.
+                Elles ne sont ni cédées ni utilisées à d'autres fins. <i>*</i></span>
+            </label>
+            <em class="champ__err"></em>
+          </div>
+        </div>
+
+        <!-- piège à robots, invisible pour les personnes -->
+        <div class="miel" aria-hidden="true">
+          <label>Ne pas remplir<input type="text" name="societe_web" tabindex="-1" autocomplete="off" /></label>
+        </div>
+
+        <div class="ct__pied">
+          <button class="btn btn--lg" type="submit">
+            <span>Envoyer la demande</span>
+            <i class="btn__arrow" aria-hidden="true"></i>
+          </button>
+          <p class="ct__mentions">Champs marqués <i>*</i> obligatoires. Réponse sous 48 h ouvrées.</p>
+        </div>
+        <p class="ct__etat" id="etatForm" role="status" aria-live="polite"></p>
+      </form>
     </div>
   </section>
 </main>
@@ -472,37 +619,74 @@
 <!-- ═══ PIED DE PAGE ═══ -->
 <footer class="footer">
   <div class="wrap">
-    <div class="footer__cols">
-      <div class="footer__brand">
-        <span class="nav__mark">FD</span>
-        <p>Cabinet d'architecte d'intérieur &amp; designer.<br />Design d'espaces, mobilier spécifique,<br />signalétique et aménagement.<br />Toulouse — Occitanie.</p>
+    <div class="footer__haut">
+      <a class="footer__logo" href="#top" aria-label="Fabien Duffort — revenir en haut de la page">
+        <img src="/img/logo-fd.webp" alt="Logo Fabien Duffort" width="760" height="760" loading="lazy" />
+      </a>
+      <div class="footer__ident">
+        <p class="footer__phrase">
+          Cabinet d'architecte d'intérieur &amp; designer, installé à Toulouse.
+          Design d'espaces, mobilier spécifique, signalétique et aménagement —
+          du concours à la réception des travaux.
+        </p>
+        <a class="footer__avis" href="https://maps.app.goo.gl/xPREvm6N5rUHM2V18" target="_blank" rel="noopener">
+          <span class="stars" aria-hidden="true"></span>
+          <span><strong>5,0 sur 5</strong> · 9 avis Google</span>
+        </a>
+        <a class="btn" href="#contact">
+          <span>Démarrer un projet</span>
+          <i class="btn__arrow" aria-hidden="true"></i>
+        </a>
       </div>
+    </div>
+
+    <div class="footer__cols">
       <div>
         <h4>Navigation</h4>
-        <a href="#apropos">À propos</a>
+        <a href="#top">Accueil</a>
+        <a href="/cabinet/">Le cabinet</a>
+        <a href="/projets/">Les 49 projets</a>
         <a href="#savoir-faire">Savoir-faire</a>
-        <a href="#projets">Projets</a>
+        <a href="#avis">Avis clients</a>
         <a href="#contact">Contact</a>
       </div>
       <div>
         <h4>Programmes</h4>
-        <a href="#savoir-faire">Commerce &amp; transport</a>
-        <a href="#savoir-faire">Santé &amp; enseignement</a>
-        <a href="#savoir-faire">Tertiaire &amp; logement</a>
-        <a href="#savoir-faire">Signalétique &amp; design</a>
+        <a href="/projets/?p=logement">Logement</a>
+        <a href="/projets/?p=commerce">Commerce</a>
+        <a href="/projets/?p=tertiaire">Tertiaire</a>
+        <a href="/projets/?p=sante">Santé</a>
+        <a href="/projets/?p=enseignement">Enseignement</a>
+        <a href="/projets/?p=transport">Transport</a>
+      </div>
+      <div>
+        <h4>Prestations</h4>
+        <a href="#missions">Faisabilité &amp; diagnostic</a>
+        <a href="#missions">Aménagement &amp; space planning</a>
+        <a href="#missions">Mobilier spécifique</a>
+        <a href="#missions">Étude chromatique</a>
+        <a href="#missions">Signalétique</a>
+        <a href="#missions">Suivi des études</a>
       </div>
       <div>
         <h4>Contact</h4>
         <a href="tel:+33661935426">+33 6 61 93 54 26</a>
         <a href="https://maps.app.goo.gl/xPREvm6N5rUHM2V18" target="_blank" rel="noopener">48 rue de Puymaurin<br />31400 Toulouse</a>
-        <a href="https://maps.app.goo.gl/xPREvm6N5rUHM2V18" target="_blank" rel="noopener">Voir sur Google Maps</a>
+        <a href="https://maps.app.goo.gl/xPREvm6N5rUHM2V18" target="_blank" rel="noopener">Itinéraire Google Maps</a>
+        <span class="footer__horaires">Sur rendez-vous</span>
       </div>
     </div>
+
     <div class="footer__word"><span>DUFFORT</span></div>
   </div>
+
   <div class="footer__bar">
     <span>© <span id="year"></span> Fabien DUFFORT — Architecte d'intérieur &amp; Designer, Toulouse</span>
-    <span>Design &amp; développement du site</span>
+    <nav class="footer__legal">
+      <a href="#contact">Mentions légales</a>
+      <a href="#contact">Politique de confidentialité</a>
+      <a class="footer__haut-lien" href="#top">Haut de page ↑</a>
+    </nav>
   </div>
 </footer>
 

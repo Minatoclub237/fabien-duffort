@@ -233,7 +233,7 @@ document.querySelectorAll('a[href^="#"]').forEach((a) => {
 /* ══════════════════════════════════════════
    3. Entrée du hero
    ══════════════════════════════════════════ */
-const heroImg = document.querySelector('.hero__media img');
+const heroImg = document.querySelector('.hero__media video, .hero__media img');
 
 if (!reduced) {
   const intro = gsap.timeline({ defaults: { ease: 'expo.out' } });
@@ -443,3 +443,114 @@ window.addEventListener('resize', () => {
 
 document.fonts?.ready.then(() => ScrollTrigger.refresh());
 window.addEventListener('load', () => ScrollTrigger.refresh());
+
+/* ══════════════════════════════════════════
+   12. Formulaire de contact
+   ══════════════════════════════════════════
+
+   À RENSEIGNER avant mise en ligne : l'adresse de réception, ou l'URL d'un
+   service de formulaire. Tant que les deux sont vides, le formulaire valide
+   la saisie et propose de copier la demande, sans jamais faire croire à un
+   envoi qui n'a pas lieu. */
+const CONTACT_EMAIL = '';
+const CONTACT_ENDPOINT = '';
+
+(() => {
+  const form = document.getElementById('formContact');
+  if (!form) return;
+  const etat = document.getElementById('etatForm');
+  const msg = form.querySelector('#c-msg');
+  const cpt = document.getElementById('cptMsg');
+
+  if (msg && cpt) {
+    msg.setAttribute('maxlength', '1500');
+    const maj = () => { cpt.textContent = msg.value.length; };
+    msg.addEventListener('input', maj); maj();
+  }
+
+  const bloc = (el) => el.closest('.champ');
+  const erreur = (el, txt) => {
+    const b = bloc(el); if (!b) return;
+    b.classList.toggle('est-faux', !!txt);
+    const e = b.querySelector('.champ__err');
+    if (e) e.textContent = txt || '';
+  };
+
+  const verifier = (el) => {
+    const v = (el.value || '').trim();
+    if (el.type === 'checkbox' && el.required && !el.checked) return 'À cocher pour envoyer la demande.';
+    if (el.required && el.type !== 'checkbox' && !v) return 'Ce champ est nécessaire.';
+    if (el.type === 'email' && v && !/^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i.test(v)) return 'Adresse e-mail incomplète.';
+    if (el.type === 'tel' && v && v.replace(/[^\d+]/g, '').length < 9) return 'Numéro trop court.';
+    if (el.type === 'number' && v && +v <= 0) return 'Indiquez une surface positive.';
+    return '';
+  };
+
+  form.querySelectorAll('input, select, textarea').forEach((el) => {
+    el.addEventListener('blur', () => erreur(el, verifier(el)));
+    el.addEventListener('input', () => { if (bloc(el)?.classList.contains('est-faux')) erreur(el, verifier(el)); });
+  });
+
+  const resume = () => {
+    const d = new FormData(form);
+    const missions = d.getAll('mission');
+    const l = [
+      ['Profil', d.get('profil')], ['Nom', d.get('nom')], ['E-mail', d.get('email')],
+      ['Téléphone', d.get('telephone')], ['Programme', d.get('programme')],
+      ['Localisation', d.get('lieu')], ['Surface', d.get('surface') ? d.get('surface') + ' m²' : ''],
+      ['Budget', d.get('budget')], ['Échéance', d.get('echeance')],
+      ['Missions', missions.join(', ')],
+    ].filter(([, v]) => v).map(([k, v]) => `${k} : ${v}`);
+    return `Demande depuis le site\n\n${l.join('\n')}\n\nProjet :\n${d.get('message')}`;
+  };
+
+  form.addEventListener('submit', async (ev) => {
+    ev.preventDefault();
+    if (form.querySelector('[name="societe_web"]').value) return;   // robot
+
+    let premier = null;
+    form.querySelectorAll('input, select, textarea').forEach((el) => {
+      const e = verifier(el);
+      erreur(el, e);
+      if (e && !premier) premier = el;
+    });
+    if (premier) {
+      etat.className = 'ct__etat ko';
+      etat.textContent = 'Quelques champs sont à compléter avant l’envoi.';
+      premier.focus({ preventScroll: true });
+      premier.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return;
+    }
+
+    const bouton = form.querySelector('button[type="submit"]');
+    bouton.disabled = true;
+
+    try {
+      if (CONTACT_ENDPOINT) {
+        const r = await fetch(CONTACT_ENDPOINT, {
+          method: 'POST', headers: { Accept: 'application/json' }, body: new FormData(form),
+        });
+        if (!r.ok) throw new Error('envoi refusé');
+        form.reset();
+        etat.className = 'ct__etat ok';
+        etat.textContent = 'Demande envoyée. Réponse sous 48 heures ouvrées.';
+      } else if (CONTACT_EMAIL) {
+        location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(
+          'Demande de projet — ' + (form.nom.value || ''))}&body=${encodeURIComponent(resume())}`;
+        etat.className = 'ct__etat ok';
+        etat.textContent = 'Votre messagerie s’ouvre avec la demande pré-remplie.';
+      } else {
+        await navigator.clipboard.writeText(resume()).catch(() => {});
+        etat.className = 'ct__etat ok';
+        etat.innerHTML = 'Votre demande est complète et copiée dans le presse-papier. '
+          + 'L’adresse de réception n’est pas encore configurée : '
+          + '<a href="tel:+33661935426"><strong>appelez le 06 61 93 54 26</strong></a>.';
+      }
+    } catch {
+      etat.className = 'ct__etat ko';
+      etat.textContent = 'L’envoi a échoué. Appelez le 06 61 93 54 26 ou réessayez.';
+    } finally {
+      bouton.disabled = false;
+    }
+  });
+})();
