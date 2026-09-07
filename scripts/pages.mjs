@@ -18,6 +18,7 @@ const TETE = (titre, desc, entree, extra = '') => `<!doctype html>
   <title>${e(titre)}</title>
   <meta name="description" content="${e(desc)}" />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%2354392E'/><text x='16' y='22' font-family='sans-serif' font-size='15' font-weight='700' fill='%23F2F0EE' text-anchor='middle'>FD</text></svg>" />
+  <link rel="stylesheet" href="/src/pages.css" />
 ${extra}</head>
 <body class="page">
 <header class="nav nav--solid" id="nav">

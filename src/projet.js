@@ -1,6 +1,6 @@
 /* Page projet : le hero se referme en carte au défilement, la galerie
    horizontale s'épingle, chaque image glisse dans son cadre à contresens. */
-import { gsap, ScrollTrigger, defilement, enLignes, curseur, annee, reduit, bureau } from './commun.js';
+import { gsap, ScrollTrigger, defilement, revelerLignes, reveler, curseur, annee, reduit, bureau } from './commun.js';
 
 defilement();
 annee();
@@ -9,11 +9,11 @@ curseur();
 /* ── entrée ─────────────────────────────────────────── */
 if (!reduit) {
   const tl = gsap.timeline({ defaults: { ease: 'expo.out' } });
-  tl.from('.pr__heroTexte .pill', { opacity: 0, y: 16, duration: 0.9 }, 0.15)
-    .from(enLignes(document.querySelector('.pr__hero [data-split]')),
-      { yPercent: 108, duration: 1.25, stagger: 0.08 }, 0.25)
-    .from('.pr__lieu', { opacity: 0, y: 14, duration: 0.9 }, 0.7)
-    .from('.pr__scroll', { opacity: 0, duration: 0.8 }, 0.9);
+  tl.from('.pr__heroTexte .pill', { opacity: 0, y: 16, duration: 0.9, clearProps: 'all' }, 0.15)
+    .from('.pr__lieu', { opacity: 0, y: 14, duration: 0.9, clearProps: 'all' }, 0.7)
+    .from('.pr__scroll', { opacity: 0, duration: 0.8, clearProps: 'all' }, 0.9);
+  revelerLignes(document.querySelector('.pr__hero [data-split]'),
+    { tout_de_suite: true, delai: 0.25, duree: 1.25 });
 
   /* le hero se referme en carte arrondie pendant que le contenu monte */
   gsap.fromTo('.pr__heroMedia',
@@ -34,17 +34,8 @@ if (!reduit) {
 
 /* ── résumé et fiche technique ──────────────────────── */
 if (!reduit) {
-  const resume = document.querySelector('[data-lignes]');
-  if (resume) {
-    gsap.from(enLignes(resume), {
-      yPercent: 106, duration: 1, ease: 'expo.out', stagger: 0.07,
-      scrollTrigger: { trigger: resume, start: 'top 88%', once: true },
-    });
-  }
-  gsap.from('.pr__fiche > div', {
-    opacity: 0, y: 18, duration: 0.75, ease: 'expo.out', stagger: 0.06,
-    scrollTrigger: { trigger: '.pr__fiche', start: 'top 88%', once: true },
-  });
+  revelerLignes(document.querySelector('[data-lignes]'), { duree: 1, decalage: 0.07 });
+  reveler('.pr__fiche > div', { y: 18, duree: 0.75, decalage: 0.06 });
 }
 
 /* ── galerie horizontale épinglée ───────────────────── */
@@ -97,10 +88,8 @@ if (!reduit) {
       yPercent: 8, ease: 'none',
       scrollTrigger: { trigger: suiv, start: 'top bottom', end: 'bottom bottom', scrub: true },
     });
-    gsap.from(suiv.querySelectorAll('.eyebrow, .titre-geant, .pr__suivantLieu'), {
-      opacity: 0, y: 26, duration: 1, ease: 'expo.out', stagger: 0.08,
-      scrollTrigger: { trigger: suiv, start: 'top 78%', once: true },
-    });
+    reveler(suiv.querySelectorAll('.eyebrow, .titre-geant, .pr__suivantLieu'),
+      { y: 26, duree: 1, decalage: 0.08, start: 'top 88%' });
   }
 }
 

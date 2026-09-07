@@ -1,3 +1,9 @@
+/* Les polices sont chargées ici, et non depuis le JavaScript : la feuille est
+   déclarée dans le <head>, donc le navigateur l'a dès la première réponse et
+   la page ne s'affiche jamais en texte brut le temps que le module arrive. */
+@import '@fontsource-variable/urbanist';
+@import '@fontsource-variable/inter';
+
 /* ══════════════════════════════════════════
    Fabien Duffort — feuille de style
    ══════════════════════════════════════════ */

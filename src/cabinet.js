@@ -1,32 +1,17 @@
 /* Page « Le cabinet ». Mouvement propre à cette page :
    manifeste révélé mot à mot au défilement, image flottante sur la liste des
    maîtres d'ouvrage, rubans à vitesse pilotée par le scroll, cartes inclinables. */
-import { gsap, ScrollTrigger, SplitText, defilement, enLignes, curseur, annee, reduit } from './commun.js';
+import { gsap, ScrollTrigger, SplitText, defilement, revelerLignes, reveler, curseur, annee, reduit } from './commun.js';
 
 defilement();
 annee();
 curseur();
 
 /* ── titres ─────────────────────────────────────────── */
-if (!reduit) {
-  document.querySelectorAll('[data-split]').forEach((t, i) => {
-    const lignes = enLignes(t);
-    if (i === 0) {
-      gsap.from(lignes, { yPercent: 108, duration: 1.2, ease: 'expo.out', stagger: 0.09, delay: 0.12 });
-    } else {
-      gsap.from(lignes, {
-        yPercent: 108, duration: 1.1, ease: 'expo.out', stagger: 0.08,
-        scrollTrigger: { trigger: t, start: 'top 88%', once: true },
-      });
-    }
-  });
-  gsap.utils.toArray('.titre-moyen').forEach((t) => {
-    gsap.from(enLignes(t), {
-      yPercent: 106, duration: 1, ease: 'expo.out', stagger: 0.07,
-      scrollTrigger: { trigger: t, start: 'top 88%', once: true },
-    });
-  });
-}
+document.querySelectorAll('[data-split]').forEach((t, i) => {
+  revelerLignes(t, { tout_de_suite: i === 0, duree: 1.2 });
+});
+gsap.utils.toArray('.titre-moyen').forEach((t) => revelerLignes(t, { duree: 1 }));
 
 /* ── manifeste : chaque mot s'allume au fil du défilement ── */
 const manifeste = document.querySelector('[data-mots]');
@@ -70,12 +55,7 @@ document.querySelectorAll('.cb__chiffre strong').forEach((el, i) => {
   const img = flotte.querySelector('img');
   const lignes = [...liste.querySelectorAll('.cb__ligne')];
 
-  if (!reduit) {
-    gsap.from(lignes, {
-      opacity: 0, y: 24, duration: 0.8, ease: 'expo.out', stagger: 0.03,
-      scrollTrigger: { trigger: liste, start: 'top 84%', once: true },
-    });
-  }
+  reveler(lignes, { y: 24, decalage: 0.03 });
 
   if (reduit || !matchMedia('(hover: hover)').matches) return;
 
@@ -110,12 +90,7 @@ document.querySelectorAll('.cb__chiffre strong').forEach((el, i) => {
 })();
 
 /* ── concours ───────────────────────────────────────── */
-if (!reduit) {
-  gsap.from('.cb__ccLigne', {
-    opacity: 0, y: 22, duration: 0.7, ease: 'expo.out', stagger: 0.045,
-    scrollTrigger: { trigger: '.cb__cc', start: 'top 86%', once: true },
-  });
-}
+reveler('.cb__ccLigne', { y: 22, duree: 0.7, decalage: 0.045 });
 
 /* ── rubans des partenaires ─────────────────────────── */
 if (!reduit) {
@@ -141,10 +116,7 @@ if (!reduit) {
 
 /* ── villes ─────────────────────────────────────────── */
 if (!reduit) {
-  gsap.from('.cb__ville', {
-    opacity: 0, y: 26, scale: 0.94, duration: 0.75, ease: 'expo.out', stagger: 0.025,
-    scrollTrigger: { trigger: '.cb__villes', start: 'top 86%', once: true },
-  });
+  reveler('.cb__ville', { y: 26, duree: 0.75, decalage: 0.025 });
   gsap.utils.toArray('.cb__ville').forEach((v, i) => {
     gsap.fromTo(v, { y: (i % 3) * 12 }, {
       y: -(i % 3) * 12, ease: 'none',
@@ -165,11 +137,9 @@ if (!reduit && matchMedia('(hover: hover)').matches) {
     });
     c.addEventListener('pointerleave', () => { q.rx(0); q.ry(0); });
   });
-  gsap.from('.cb__lbCarte', {
-    opacity: 0, y: 30, duration: 0.85, ease: 'expo.out', stagger: 0.07,
-    scrollTrigger: { trigger: '.cb__lb', start: 'top 86%', once: true },
-  });
 }
+
+reveler('.cb__lbCarte', { y: 30, duree: 0.85, decalage: 0.07 });
 
 window.addEventListener('load', () => ScrollTrigger.refresh());
 document.fonts?.ready.then(() => ScrollTrigger.refresh());

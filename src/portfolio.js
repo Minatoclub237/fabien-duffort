@@ -1,6 +1,6 @@
 /* Page portfolio : filtres animés par Flip, révélation des cartes,
    parallaxe interne des images. */
-import { gsap, ScrollTrigger, Flip, defilement, enLignes, curseur, annee, reduit } from './commun.js';
+import { gsap, ScrollTrigger, Flip, defilement, revelerLignes, reveler, curseur, annee, reduit } from './commun.js';
 
 defilement();
 annee();
@@ -14,14 +14,14 @@ const vide = document.getElementById('vide');
 
 /* ── entrée de page ─────────────────────────────────── */
 if (!reduit) {
-  const tl = gsap.timeline({ defaults: { ease: 'expo.out' } });
-  tl.from(enLignes(document.querySelector('[data-split]')), { yPercent: 108, duration: 1.15, stagger: 0.09 }, 0.1)
-    .from('.pf__lead', { opacity: 0, y: 18, duration: 0.9 }, 0.5)
-    .from('.chip', { opacity: 0, y: 14, duration: 0.7, stagger: 0.035 }, 0.6);
+  revelerLignes(document.querySelector('[data-split]'), { tout_de_suite: true, duree: 1.15, decalage: 0.09 });
+  gsap.from('.pf__lead', { opacity: 0, y: 18, duration: 0.9, ease: 'expo.out', delay: 0.5, clearProps: 'all' });
+  gsap.from('.chip', { opacity: 0, y: 14, duration: 0.7, ease: 'expo.out', stagger: 0.035, delay: 0.6, clearProps: 'all' });
 }
 
 /* ── révélation des cartes au défilement ────────────── */
 if (!reduit) {
+  reveler(cartes.map((c) => c.querySelector('.pj__bas')), { y: 16, duree: 0.85, decalage: 0.04 });
   cartes.forEach((c) => {
     const media = c.querySelector('.pj__media');
     const img = c.querySelector('img');
@@ -31,10 +31,6 @@ if (!reduit) {
         clipPath: 'inset(0% 0% 0% 0% round 12px)', duration: 1.15, ease: 'expo.out',
         scrollTrigger: { trigger: c, start: 'top 92%', once: true },
       });
-    gsap.from(c.querySelector('.pj__bas'), {
-      opacity: 0, y: 16, duration: 0.85, ease: 'expo.out',
-      scrollTrigger: { trigger: c, start: 'top 92%', once: true },
-    });
     // l'image glisse dans son cadre, à contresens du défilement
     gsap.fromTo(img, { yPercent: -5 }, {
       yPercent: 5, ease: 'none',

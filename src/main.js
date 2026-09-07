@@ -1,7 +1,6 @@
-import '@fontsource-variable/urbanist';
-import '@fontsource-variable/inter';
-import './style.css';
-
+/* La feuille de style et les polices sont déclarées dans le <head> de
+   index.html, pas importées ici : sinon la page s'affiche en texte brut
+   tant que ce module n'est pas chargé. */
 import Lenis from 'lenis';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
