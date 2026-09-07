@@ -37,7 +37,7 @@ body.page .nav { position: fixed; }
 .pf__tete { padding: clamp(130px, 16vh, 200px) 0 clamp(30px, 4vw, 52px); }
 .pf__lead { margin-top: 24px; max-width: 56ch; color: var(--ink-soft); font-size: 17px; }
 
-.pf__filtres { position: sticky; top: 88px; z-index: 40; padding-block: 14px; }
+.pf__filtres { position: sticky; top: calc(var(--nav-h) + 16px); z-index: 40; padding-block: 14px; }
 .pf__filtres::before {
   content: ''; position: absolute; inset: 0;
   background: linear-gradient(var(--bg) 62%, rgba(242, 240, 238, 0));
@@ -121,8 +121,15 @@ body.page .nav { position: fixed; }
 .pr__fiche dt { margin: 0; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
 .pr__fiche dd { margin: 0; font-size: 14.5px; }
 
-/* piste horizontale des photos */
-.pr__piste { background: var(--surface); padding-bottom: clamp(60px, 8vw, 110px); overflow: hidden; }
+/* Piste horizontale des photos.
+   La section s'épingle en haut de l'écran : sans ce retrait, la barre de
+   navigation (fixe, bas à 72 px) recouvrait les 72 premiers pixels des photos. */
+.pr__piste {
+  background: var(--surface);
+  padding-top: var(--sous-nav);
+  padding-bottom: clamp(60px, 8vw, 110px);
+  overflow: hidden;
+}
 .pr__pisteVue { width: 100%; }
 .pr__pisteRail {
   display: flex; gap: 14px; width: max-content;
@@ -171,9 +178,10 @@ body.page .nav { position: fixed; }
   .pr__infosGrille { grid-template-columns: 1fr; }
 }
 @media (max-width: 860px) {
-  .pf__filtres { top: 74px; }
+  .pf__filtres { top: calc(var(--nav-h) - 8px); }
   .chips { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; }
   .chips::-webkit-scrollbar { display: none; }
+  .pr__piste { padding-top: clamp(40px, 7vw, 60px); }
   .pr__pisteVue { overflow-x: auto; scrollbar-width: none; }
   .pr__pisteVue::-webkit-scrollbar { display: none; }
   .pr__pisteRail { transform: none !important; }

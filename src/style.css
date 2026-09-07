@@ -22,6 +22,12 @@
   --font-head: 'Urbanist Variable', 'Urbanist', system-ui, sans-serif;
   --font-body: 'Inter Variable', 'Inter', system-ui, sans-serif;
 
+  /* Hauteur occupée par la barre de navigation, mesurée : elle est fixe et son
+     bas tombe à 72 px. Tout bloc qui s'épingle ou se colle en haut doit se
+     placer sous cette valeur, sinon la barre lui passe dessus. */
+  --nav-h:  72px;
+  --sous-nav: calc(var(--nav-h) + 30px);
+
   --r-card: 18px;
   --r-img:  14px;
   --wrap:   1240px;
