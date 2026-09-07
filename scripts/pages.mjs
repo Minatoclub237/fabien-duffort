@@ -65,6 +65,11 @@ const PIED = `
 </html>
 `;
 
+const dim = (p, f) => {
+  const d = (p.dim || {})[f];
+  return d ? ` width="${d[0]}" height="${d[1]}"` : '';
+};
+
 const meta = (p) => [
   ['Maître d’ouvrage', p.mo], ['Mandataire', p.mandataire], ['Partenaires', p.partenaires],
   ['Mission', p.mission], ['Surface', p.surface], ['Montant', p.montant],
@@ -75,7 +80,7 @@ const meta = (p) => [
 const carte = (p, i) => `
     <article class="pj" data-secteur="${e(p.secteurKey)}" data-i="${i}">
       <a class="pj__lien" href="/projets/${p.slug}/" data-curseur>
-        <span class="pj__media"><img src="/img/p/${p.img[0]}" alt="${e(p.titre)}" loading="lazy" /></span>
+        <span class="pj__media"><img src="/img/p/${p.img[0]}" alt="${e(p.titre)}"${dim(p, p.img[0])} loading="lazy" /></span>
         <span class="pj__bas">
           <span class="pj__tag">${e(p.secteur)}${p.statut !== 'Livré' ? ' · ' + e(p.statut) : ''}</span>
           <span class="pj__titre">${e(p.titre)}</span>
@@ -140,7 +145,7 @@ const pageProjet = (p, suivant) => TETE(
 ) + `
 <main class="pr" data-slug="${p.slug}">
   <section class="pr__hero">
-    <div class="pr__heroMedia"><img src="/img/p/${p.img[0]}" alt="${e(p.titre)}" fetchpriority="high" /></div>
+    <div class="pr__heroMedia"><img src="/img/p/${p.hero || p.img[0]}" alt="${e(p.titre)}"${dim(p, p.hero || p.img[0])} fetchpriority="high" /></div>
     <div class="pr__heroVeil"></div>
     <div class="wrap pr__heroTexte">
       <span class="pill pill--light"><i class="dot"></i> ${e(p.secteur)}${p.statut !== 'Livré' ? ' — ' + e(p.statut) : ''}</span>
@@ -159,16 +164,16 @@ const pageProjet = (p, suivant) => TETE(
     </div>
   </section>
 
-  ${p.img.length > 2 ? `<section class="pr__piste">
+  ${(p.galerie = p.img.filter((x) => x !== (p.hero || p.img[0]))).length > 1 ? `<section class="pr__piste">
     <div class="pr__pisteVue"><div class="pr__pisteRail" id="rail">
-      ${p.img.slice(1).map((im, i) => `<figure class="pr__vign" data-i="${i}"><img src="/img/p/${im}" alt="" loading="lazy" /></figure>`).join('\n      ')}
+      ${p.galerie.map((im, i) => `<figure class="pr__vign" data-i="${i}"><img src="/img/p/${im}" alt=""${dim(p, im)} loading="lazy" /></figure>`).join('\n      ')}
     </div></div>
   </section>` : `<section class="pr__duo"><div class="wrap">
-      ${p.img.slice(1).map((im) => `<figure class="pr__fig"><img src="/img/p/${im}" alt="" loading="lazy" /></figure>`).join('\n      ')}
+      ${p.galerie.map((im) => `<figure class="pr__fig"><img src="/img/p/${im}" alt=""${dim(p, im)} loading="lazy" /></figure>`).join('\n      ')}
     </div></section>`}
 
   <a class="pr__suivant" href="/projets/${suivant.slug}/" data-curseur>
-    <div class="pr__suivantMedia"><img src="/img/p/${suivant.img[0]}" alt="" loading="lazy" /></div>
+    <div class="pr__suivantMedia"><img src="/img/p/${suivant.hero || suivant.img[0]}" alt=""${dim(suivant, suivant.hero || suivant.img[0])} loading="lazy" /></div>
     <div class="wrap pr__suivantTexte">
       <span class="eyebrow">— Projet suivant</span>
       <h2 class="titre-geant titre-geant--clair">${e(suivant.titre)}</h2>
@@ -222,7 +227,7 @@ const pageCabinet = () => TETE(
         <span class="cb__n">${c.n} projet${c.n > 1 ? 's' : ''}</span>
       </a>`).join('\n      ')}
     </div>
-    <figure class="cb__flotte" id="flotte"><img alt="" /></figure>
+    <figure class="cb__flotte" id="flotte"><img alt="" width="300" height="210" /></figure>
   </section>
 
   <section class="cb__concours">

@@ -248,7 +248,7 @@ if (!reduced) {
     .to('[data-hero="6"]', { opacity: 1, duration: 0.9 }, 0.95);
 
   // Ken Burns lent et continu sur l'image du hero
-  gsap.to(heroImg, { scale: 1.16, duration: 22, ease: 'none', repeat: -1, yoyo: true });
+  gsap.to(heroImg, { scale: 1.09, duration: 22, ease: 'none', repeat: -1, yoyo: true });
 
   // parallaxe : le contenu monte et s'efface pendant que la section suivante recouvre
   gsap.to('.hero__inner', {

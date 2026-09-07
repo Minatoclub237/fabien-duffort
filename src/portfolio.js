@@ -32,8 +32,8 @@ if (!reduit) {
         scrollTrigger: { trigger: c, start: 'top 92%', once: true },
       });
     // l'image glisse dans son cadre, à contresens du défilement
-    gsap.fromTo(img, { yPercent: -5 }, {
-      yPercent: 5, ease: 'none',
+    gsap.fromTo(img, { yPercent: -2.5 }, {
+      yPercent: 2.5, ease: 'none',
       scrollTrigger: { trigger: c, start: 'top bottom', end: 'bottom top', scrub: true },
     });
   });

@@ -23,7 +23,7 @@ if (!reduit) {
       scrollTrigger: { trigger: '.pr__hero', start: 'top top', end: 'bottom top', scrub: 0.5 },
     });
   gsap.to('.pr__heroMedia img', {
-    yPercent: 12, scale: 1.02, ease: 'none',
+    yPercent: 5, scale: 1.01, ease: 'none',
     scrollTrigger: { trigger: '.pr__hero', start: 'top top', end: 'bottom top', scrub: true },
   });
   gsap.to('.pr__heroTexte', {
@@ -59,8 +59,8 @@ function piste() {
 
   /* chaque photo glisse à contresens dans son cadre : la profondeur vient de là */
   rail.querySelectorAll('.pr__vign').forEach((f) => {
-    gsap.fromTo(f.querySelector('img'), { xPercent: -6 }, {
-      xPercent: 6, ease: 'none',
+    gsap.fromTo(f.querySelector('img'), { xPercent: -2.5 }, {
+      xPercent: 2.5, ease: 'none',
       scrollTrigger: {
         trigger: f, containerAnimation: t,
         start: 'left right', end: 'right left', scrub: true,
@@ -73,8 +73,8 @@ piste();
 /* ── duo d'images (projets de moins de trois photos) ── */
 if (!reduit) {
   gsap.utils.toArray('.pr__fig').forEach((f) => {
-    gsap.fromTo(f.querySelector('img'), { yPercent: -6 }, {
-      yPercent: 6, ease: 'none',
+    gsap.fromTo(f.querySelector('img'), { yPercent: -2.5 }, {
+      yPercent: 2.5, ease: 'none',
       scrollTrigger: { trigger: f, start: 'top bottom', end: 'bottom top', scrub: true },
     });
   });
@@ -84,8 +84,8 @@ if (!reduit) {
 if (!reduit) {
   const suiv = document.querySelector('.pr__suivant');
   if (suiv) {
-    gsap.fromTo(suiv.querySelector('.pr__suivantMedia img'), { yPercent: -8 }, {
-      yPercent: 8, ease: 'none',
+    gsap.fromTo(suiv.querySelector('.pr__suivantMedia img'), { yPercent: -3 }, {
+      yPercent: 3, ease: 'none',
       scrollTrigger: { trigger: suiv, start: 'top bottom', end: 'bottom bottom', scrub: true },
     });
     reveler(suiv.querySelectorAll('.eyebrow, .titre-geant, .pr__suivantLieu'),
