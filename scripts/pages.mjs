@@ -28,8 +28,9 @@ ${extra}</head>
   </a>
   <nav class="nav__links">
     <a href="/cabinet/">Le cabinet</a>
-    <a href="/#savoir-faire">Savoir-faire</a>
     <a href="/projets/">Projets</a>
+    <a href="/#savoir-faire">Savoir-faire</a>
+    <a href="/#avis">Avis</a>
     <a href="/#contact">Contact</a>
   </nav>
   <button class="burger" id="burger" type="button" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="menuMobile">
@@ -40,11 +41,10 @@ ${extra}</head>
 
 <div class="menuM" id="menuMobile" hidden>
   <nav class="menuM__liens">
-    <a href="/#top">Accueil</a>
     <a href="/cabinet/">Le cabinet</a>
-    <a href="/projets/">Les 49 projets</a>
+    <a href="/projets/">Projets</a>
     <a href="/#savoir-faire">Savoir-faire</a>
-    <a href="/#avis">Avis clients</a>
+    <a href="/#avis">Avis</a>
     <a href="/#contact">Contact</a>
   </nav>
   <div class="menuM__pied">
