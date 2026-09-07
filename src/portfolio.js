@@ -94,3 +94,30 @@ chips.forEach((c) => c.addEventListener('click', () => {
 }));
 
 window.addEventListener('load', () => ScrollTrigger.refresh());
+
+/* ══════════════════════════════════════════
+   Transition vers la fiche projet
+   On nomme l'image de la carte cliquée juste avant la navigation : le
+   navigateur la relie à l'image du héros de la page d'arrivée et l'anime
+   jusqu'à sa nouvelle place.
+   ══════════════════════════════════════════ */
+(() => {
+  if (reduit || !('startViewTransition' in document)) return;
+  const nettoie = () => document.querySelectorAll('[style*="view-transition-name"]')
+    .forEach((e) => { e.style.viewTransitionName = ''; });
+
+  cartes.forEach((c) => {
+    const lien = c.querySelector('.pj__lien');
+    const img = c.querySelector('img');
+    if (!lien || !img) return;
+    lien.addEventListener('click', () => {
+      nettoie();
+      img.style.viewTransitionName = 'projet-hero';
+    });
+  });
+
+  // au retour arrière, le nom doit repartir, sinon deux éléments le portent
+  window.addEventListener('pageswap', nettoie);
+  window.addEventListener('pagereveal', nettoie);
+  window.addEventListener('pageshow', nettoie);
+})();

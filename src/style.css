@@ -926,3 +926,65 @@ main { position: relative; z-index: 1; background: var(--bg); }
   .footer__logo { max-width: 220px; }
   .footer__bar { flex-direction: column; align-items: flex-start; gap: 12px; }
 }
+
+/* ══════════════════════════════════════════
+   FOND ÉVOLUTIF
+   Une couche fixe derrière la page. Les sections claires deviennent
+   transparentes pour la laisser voir ; les sections « surface » restent
+   opaques et jouent le rôle de cartes posées dessus.
+   ══════════════════════════════════════════ */
+.fond {
+  position: fixed; inset: 0; z-index: -1;
+  background: var(--bg);
+  transition: background-color .1s linear;
+}
+.about, .services, .method, .missions, .journal, .footer { background: transparent; }
+
+/* ══════════════════════════════════════════
+   JOURNAL — mouvement
+   ══════════════════════════════════════════ */
+.jcard__media { position: relative; }
+.jcard__volet { display: block; width: 100%; height: 100%; overflow: hidden; }
+.jcard__volet img { width: 100%; height: 100%; object-fit: cover; transform: scale(1.05); }
+.jcard__meta { transition: transform .5s var(--ease); }
+.jcard:hover .jcard__meta { transform: translateX(6px); }
+.chip { transition: background .35s var(--ease), color .35s var(--ease); }
+.jcard:hover .chip { background: var(--espresso); color: #F4ECE6; }
+
+.jcard__title a { display: inline; background-image: linear-gradient(currentColor, currentColor);
+  background-size: 0% 1px; background-repeat: no-repeat; background-position: 0 100%;
+  transition: background-size .55s var(--ease);
+  padding-bottom: 2px;
+}
+.jcard:hover .jcard__title a { background-size: 100% 1px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .jcard__volet img { transform: none; }
+}
+
+/* ══════════════════════════════════════════
+   TRANSITION ENTRE PAGES
+   Le navigateur anime lui-même le passage d'un document à l'autre : l'image
+   de la carte projet devient le héros de la fiche. Aucune bibliothèque, et
+   la coupure blanche au clic disparaît. Sans support, la navigation reste
+   normale — rien ne casse.
+   ══════════════════════════════════════════ */
+@view-transition { navigation: auto; }
+
+::view-transition-group(*) { animation-duration: .55s; animation-timing-function: cubic-bezier(.22, 1, .36, 1); }
+::view-transition-old(root) { animation-duration: .3s; }
+::view-transition-new(root) { animation-duration: .45s; }
+
+/* la barre de navigation reste posée, elle ne participe pas au fondu */
+.nav { view-transition-name: barre-nav; }
+
+/* l'image reprise d'une page à l'autre */
+.pr__heroMedia img { view-transition-name: projet-hero; }
+::view-transition-group(projet-hero) { animation-duration: .7s; }
+::view-transition-old(projet-hero), ::view-transition-new(projet-hero) { mix-blend-mode: normal; }
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*), ::view-transition-old(*), ::view-transition-new(*) {
+    animation-duration: .01ms !important;
+  }
+}

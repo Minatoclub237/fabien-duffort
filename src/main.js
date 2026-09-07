@@ -554,3 +554,59 @@ const CONTACT_ENDPOINT = '';
     }
   });
 })();
+
+/* ══════════════════════════════════════════
+   13. Fond évolutif
+   Une couche fixe derrière la page dont la teinte glisse d'une section à
+   l'autre. Presque invisible consciemment, mais la page cesse de se lire
+   comme un empilement de blocs.
+   ══════════════════════════════════════════ */
+if (!reduced) {
+  const fond = document.querySelector('.fond');
+  const etapes = [
+    ['.about', '#F2F0EE'], ['.services', '#EFECE7'], ['.method', '#ECE7E1'],
+    ['.missions', '#EFEBE5'], ['.journal', '#F1EDE8'], ['.footer', '#EDE8E2'],
+  ].filter(([s]) => document.querySelector(s));
+
+  if (fond) {
+    etapes.forEach(([sel, couleur], i) => {
+      if (i === 0) { gsap.set(fond, { backgroundColor: couleur }); return; }
+      gsap.to(fond, {
+        backgroundColor: couleur, ease: 'none',
+        scrollTrigger: { trigger: sel, start: 'top 85%', end: 'top 25%', scrub: 0.8 },
+      });
+    });
+  }
+}
+
+/* ══════════════════════════════════════════
+   14. Journal : volet qui s'ouvre, photo en contresens
+   ══════════════════════════════════════════ */
+if (!reduced) {
+  gsap.utils.toArray('.jcard').forEach((c, i) => {
+    const volet = c.querySelector('.jcard__volet');
+    const img = c.querySelector('img');
+    if (!volet) return;
+
+    gsap.fromTo(volet,
+      { clipPath: 'inset(100% 0% 0% 0%)' },
+      {
+        clipPath: 'inset(0% 0% 0% 0%)', duration: 1.15, ease: 'expo.out', delay: i * 0.12,
+        scrollTrigger: { trigger: c, start: 'top 88%', once: true },
+      });
+    gsap.fromTo(img, { yPercent: 6, scale: 1.08 },
+      {
+        yPercent: 0, scale: 1.05, duration: 1.3, ease: 'expo.out', delay: i * 0.12,
+        scrollTrigger: { trigger: c, start: 'top 88%', once: true },
+      });
+    gsap.fromTo(img, { yPercent: -2.5 }, {
+      yPercent: 2.5, ease: 'none',
+      scrollTrigger: { trigger: c, start: 'top bottom', end: 'bottom top', scrub: true },
+    });
+    gsap.from(c.querySelectorAll('.jcard__meta, .jcard__title'), {
+      opacity: 0, y: 16, duration: 0.9, ease: 'expo.out', stagger: 0.07, delay: 0.25 + i * 0.12,
+      scrollTrigger: { trigger: c, start: 'top 88%', once: true },
+      clearProps: 'all',
+    });
+  });
+}
