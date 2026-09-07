@@ -754,28 +754,33 @@ main { position: relative; z-index: 1; background: var(--bg); }
 @media (max-width: 860px) {
   .nav { padding: 8px 8px 8px 14px; }
   .nav__links { display: none; }
-  /* les lignes sont trop hautes pour s'empiler proprement sur petit écran */
+  /* L'empilement collant est conservé sur petit écran : il est piloté par le
+     défilement, donc il fonctionne au doigt exactement comme à la molette.
+     Seul le point d'ancrage descend, la barre étant plus basse ici. */
   .project, .project--flip {
     grid-template-columns: 1fr;
-    position: static;
-    box-shadow: none;
+    top: calc(var(--nav-h) - 6px);
   }
   .project--flip .project__info { order: 0; }
   .method__card { position: static; width: 100%; border-radius: 0 0 var(--r-card) var(--r-card); }
   .method__body { border-radius: var(--r-card); }
-    .cta__inner { flex-direction: column; align-items: flex-start; }
-  /* la piste redevient un défilement natif */
-  .services__viewport { overflow-x: auto; scrollbar-width: none; }
-  .services__viewport::-webkit-scrollbar { display: none; }
-  .services__track { transform: none !important; }
+  .cta__inner { flex-direction: column; align-items: flex-start; }
+  /* la piste horizontale reste épinglée : même mouvement qu'au bureau */
+  .services__head { padding-top: 10px; }
 }
 
 @media (max-width: 620px) {
   .about__grid { grid-template-columns: 1fr; }
   .about__stats { flex-direction: column; }
-    .process__grid { grid-template-columns: 1fr; gap: 10px; }
+  /* L'escalier est conservé sur téléphone : une colonne, mais chaque carte
+     décalée vers la droite, ce qui garde la diagonale visible au bureau. */
+  .process__grid { grid-template-columns: 1fr; gap: 12px; }
+  .pcard { aspect-ratio: 1.4; }
   .pcard:nth-child(1), .pcard:nth-child(2),
   .pcard:nth-child(3), .pcard:nth-child(4) { grid-area: auto; }
+  .pcard:nth-child(2) { margin-left: 8%; }
+  .pcard:nth-child(3) { margin-left: 16%; }
+  .pcard:nth-child(4) { margin-left: 24%; }
   .footer__cols { grid-template-columns: 1fr; }
   .project__media { grid-template-columns: 1fr; }
   .project__media figure:nth-child(2) { margin-top: 0; }

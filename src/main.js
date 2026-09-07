@@ -311,7 +311,7 @@ document.querySelectorAll('.stat__num').forEach((el) => {
 let svcST = null;
 function buildServices() {
   if (svcST) { svcST.kill(); svcST = null; gsap.set(svcTrack, { x: 0 }); }
-  if (reduced || !isDesktop()) return;
+  if (reduced) return;   // la piste epinglee fonctionne aussi au tactile
 
   const distance = () => Math.max(0, svcTrack.scrollWidth - window.innerWidth);
 

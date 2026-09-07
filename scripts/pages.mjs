@@ -40,25 +40,74 @@ ${extra}</head>
 const PIED = `
 <footer class="footer">
   <div class="wrap">
-    <div class="footer__cols">
-      <div class="footer__brand">
-        <span class="nav__mark">FD</span>
-        <p>Cabinet d'architecte d'intérieur &amp; designer.<br />Toulouse — Occitanie.</p>
+    <div class="footer__haut">
+      <a class="footer__logo" href="/#top" aria-label="Fabien Duffort — revenir en haut de la page">
+        <img src="/img/logo-fd.webp" alt="Logo Fabien Duffort" width="760" height="760" loading="lazy" />
+      </a>
+      <div class="footer__ident">
+        <p class="footer__phrase">
+          Cabinet d'architecte d'intérieur &amp; designer, installé à Toulouse.
+          Design d'espaces, mobilier spécifique, signalétique et aménagement —
+          du concours à la réception des travaux.
+        </p>
+        <a class="footer__avis" href="https://maps.app.goo.gl/xPREvm6N5rUHM2V18" target="_blank" rel="noopener">
+          <span class="stars" aria-hidden="true"></span>
+          <span><strong>5,0 sur 5</strong> · 9 avis Google</span>
+        </a>
+        <a class="btn" href="/#contact">
+          <span>Démarrer un projet</span>
+          <i class="btn__arrow" aria-hidden="true"></i>
+        </a>
       </div>
+    </div>
+
+    <div class="footer__cols">
       <div>
         <h4>Navigation</h4>
-        <a href="/cabinet/">Le cabinet</a><a href="/projets/">Tous les projets</a><a href="/#contact">Contact</a>
+        <a href="/#top">Accueil</a>
+        <a href="/cabinet/">Le cabinet</a>
+        <a href="/projets/">Les 49 projets</a>
+        <a href="/#savoir-faire">Savoir-faire</a>
+        <a href="/#avis">Avis clients</a>
+        <a href="/#contact">Contact</a>
+      </div>
+      <div>
+        <h4>Programmes</h4>
+        <a href="/projets/?p=logement">Logement</a>
+        <a href="/projets/?p=commerce">Commerce</a>
+        <a href="/projets/?p=tertiaire">Tertiaire</a>
+        <a href="/projets/?p=sante">Santé</a>
+        <a href="/projets/?p=enseignement">Enseignement</a>
+        <a href="/projets/?p=transport">Transport</a>
+      </div>
+      <div>
+        <h4>Prestations</h4>
+        <a href="/#missions">Faisabilité &amp; diagnostic</a>
+        <a href="/#missions">Aménagement &amp; space planning</a>
+        <a href="/#missions">Mobilier spécifique</a>
+        <a href="/#missions">Étude chromatique</a>
+        <a href="/#missions">Signalétique</a>
+        <a href="/#missions">Suivi des études</a>
       </div>
       <div>
         <h4>Contact</h4>
         <a href="tel:+33661935426">+33 6 61 93 54 26</a>
         <a href="https://maps.app.goo.gl/xPREvm6N5rUHM2V18" target="_blank" rel="noopener">48 rue de Puymaurin<br />31400 Toulouse</a>
+        <a href="https://maps.app.goo.gl/xPREvm6N5rUHM2V18" target="_blank" rel="noopener">Itinéraire Google Maps</a>
+        <span class="footer__horaires">Sur rendez-vous</span>
       </div>
     </div>
+
     <div class="footer__word"><span>DUFFORT</span></div>
   </div>
+
   <div class="footer__bar">
     <span>© <span id="year"></span> Fabien DUFFORT — Architecte d'intérieur &amp; Designer, Toulouse</span>
+    <nav class="footer__legal">
+      <a href="/#contact">Mentions légales</a>
+      <a href="/#contact">Politique de confidentialité</a>
+      <a class="footer__haut-lien" href="/#top">Haut de page ↑</a>
+    </nav>
   </div>
 </footer>
 </body>

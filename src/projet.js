@@ -44,7 +44,7 @@ function piste() {
   const rail = document.getElementById('rail');
   if (!rail) return;
   if (pisteST) { pisteST.kill(); pisteST = null; gsap.set(rail, { x: 0 }); }
-  if (reduit || !bureau()) return;
+  if (reduit) return;    // idem : le defilement tactile pilote l'epinglage
 
   const course = () => Math.max(0, rail.scrollWidth - window.innerWidth);
   const t = gsap.to(rail, {
