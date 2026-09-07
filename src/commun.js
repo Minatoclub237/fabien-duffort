@@ -124,3 +124,12 @@ export function annee() {
   const y = document.getElementById('year');
   if (y) y.textContent = new Date().getFullYear();
 }
+
+/* Quand on quitte la page pendant qu'une transition de vue démarre, le
+   navigateur l'annule et rejette sa promesse. Ce n'est pas une erreur de
+   l'application : on l'absorbe pour ne pas polluer la console. */
+addEventListener('unhandledrejection', (e) => {
+  if (e.reason?.name === 'AbortError' && /[Tt]ransition/.test(e.reason?.message || '')) {
+    e.preventDefault();
+  }
+});

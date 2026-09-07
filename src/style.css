@@ -1062,3 +1062,11 @@ html.menu-ouvert, html.menu-ouvert body { overflow: hidden; }
 /* Le focus posé à l'ouverture du menu ne doit se voir qu'au clavier. */
 .menuM__liens a:focus { outline: none; }
 .menuM__liens a:focus-visible { outline: 2px solid #F4ECE6; outline-offset: 6px; border-radius: 4px; }
+
+/* CORRECTIF — le panneau fermé recouvrait tout l'écran.
+   `.menuM { display: flex }` l'emportait sur la règle `[hidden] { display: none }`
+   du navigateur : le panneau restait donc affiché, invisible à opacité 0, et
+   interceptait chaque clic de la page. Deux verrous plutôt qu'un. */
+.menuM[hidden] { display: none !important; }
+.menuM { pointer-events: none; }
+.menuM.est-ouvert { pointer-events: auto; }
