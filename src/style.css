@@ -988,3 +988,77 @@ main { position: relative; z-index: 1; background: var(--bg); }
     animation-duration: .01ms !important;
   }
 }
+
+/* ══════════════════════════════════════════
+   MENU MOBILE
+   Sous 860 px les liens de la barre sont masqués. Sans ce panneau, un
+   visiteur au téléphone n'a aucune navigation — c'était le cas.
+   ══════════════════════════════════════════ */
+.burger {
+  display: none;
+  width: 42px; height: 42px; border-radius: 50%;
+  border: 1px solid currentColor;
+  position: relative; flex: none;
+  transition: background .3s var(--ease);
+}
+.burger span {
+  position: absolute; left: 12px; width: 16px; height: 1.6px;
+  background: currentColor; border-radius: 2px;
+  transition: transform .4s var(--ease), opacity .3s;
+}
+.burger span:nth-child(1) { top: 17px; }
+.burger span:nth-child(2) { top: 23px; }
+.burger.est-ouvert span:nth-child(1) { transform: translateY(3px) rotate(45deg); }
+.burger.est-ouvert span:nth-child(2) { transform: translateY(-3px) rotate(-45deg); }
+
+.menuM {
+  position: fixed; inset: 0; z-index: 80;
+  background: var(--espresso); color: #F4ECE6;
+  display: flex; flex-direction: column; justify-content: center;
+  gap: 40px; padding: calc(var(--nav-h) + 40px) var(--gut) 40px;
+  opacity: 0; transform: translateY(-14px);
+  transition: opacity .4s var(--ease), transform .5s var(--ease);
+}
+.menuM.est-ouvert { opacity: 1; transform: none; }
+.menuM__liens { display: flex; flex-direction: column; gap: 4px; }
+.menuM__liens a {
+  font-family: var(--font-head); font-weight: 600;
+  font-size: clamp(1.75rem, 8vw, 2.5rem); letter-spacing: -.03em;
+  padding-block: 8px; opacity: .92;
+  transition: opacity .3s, transform .4s var(--ease);
+}
+.menuM__liens a:hover, .menuM__liens a:focus-visible { opacity: 1; transform: translateX(8px); }
+.menuM__pied { display: flex; flex-direction: column; align-items: flex-start; gap: 18px; }
+.menuM__tel { font-size: 17px; opacity: .85; }
+.menuM .btn { background: #F7F3F0; color: var(--espresso); }
+.menuM .btn__arrow { background: var(--espresso); }
+.menuM .btn__arrow::before { background: #F7F3F0; }
+.menuM .btn__arrow::after { border-color: #F7F3F0; }
+html.menu-ouvert, html.menu-ouvert body { overflow: hidden; }
+
+@media (max-width: 860px) {
+  .burger { display: block; }
+  .nav .btn--sm { display: none; }
+}
+
+/* ══════════════════════════════════════════
+   TÉMOIGNAGES SUR TÉLÉPHONE
+   La piste fait 1378 px dans un écran de 430 : sans défilement natif, seules
+   2 cartes sur 5 étaient atteignables. On rend chaque rangée balayable.
+   ══════════════════════════════════════════ */
+@media (max-width: 860px) {
+  .temoins__row {
+    overflow-x: auto; overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .temoins__row::-webkit-scrollbar { display: none; }
+  .temoins__track { transform: none !important; padding-inline: var(--gut); }
+  .temoins__row:nth-child(3) .temoins__track { margin-left: 0; }
+  .tcard { scroll-snap-align: center; }
+}
+
+/* Le focus posé à l'ouverture du menu ne doit se voir qu'au clavier. */
+.menuM__liens a:focus { outline: none; }
+.menuM__liens a:focus-visible { outline: 2px solid #F4ECE6; outline-offset: 6px; border-radius: 4px; }

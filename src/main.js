@@ -1,6 +1,7 @@
 /* La feuille de style et les polices sont déclarées dans le <head> de
    index.html, pas importées ici : sinon la page s'affiche en texte brut
    tant que ce module n'est pas chargé. */
+import { menuMobile } from './menu.js';
 import Lenis from 'lenis';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
@@ -202,6 +203,7 @@ const tickerRow = document.getElementById('ticker');
 tickerRow.innerHTML = [...TICKER, ...TICKER, ...TICKER, ...TICKER].map((t) => `<span>${t}</span>`).join('');
 
 document.getElementById('year').textContent = new Date().getFullYear();
+menuMobile();
 
 /* ══════════════════════════════════════════
    2. Défilement fluide (natif, jamais capturé)
@@ -415,7 +417,7 @@ if (!reduced) {
      du défilement. Mesuré : à l'arrêt rien ne bouge (0,00 px/frame, erreur
      0,01-0,31), ce n'est donc pas un défilement automatique. Le sens et
      l'amplitude exacts ne sont pas mesurables sur une vidéo de 736 px de large. */
-  gsap.utils.toArray('.temoins__row').forEach((row, i) => {
+  gsap.utils.toArray(window.innerWidth > 860 ? '.temoins__row' : []).forEach((row, i) => {
     const track = row.querySelector('.temoins__track');
     const sens = i % 2 === 0 ? 1 : -1;
     gsap.fromTo(track, { x: 110 * sens }, {

@@ -2,10 +2,12 @@
    manifeste révélé mot à mot au défilement, image flottante sur la liste des
    maîtres d'ouvrage, rubans à vitesse pilotée par le scroll, cartes inclinables. */
 import { gsap, ScrollTrigger, SplitText, defilement, revelerLignes, reveler, curseur, annee, reduit } from './commun.js';
+import { menuMobile } from './menu.js';
 
 defilement();
 annee();
 curseur();
+menuMobile();
 
 /* ── titres ─────────────────────────────────────────── */
 document.querySelectorAll('[data-split]').forEach((t, i) => {

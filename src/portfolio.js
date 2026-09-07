@@ -1,10 +1,12 @@
 /* Page portfolio : filtres animés par Flip, révélation des cartes,
    parallaxe interne des images. */
 import { gsap, ScrollTrigger, Flip, defilement, revelerLignes, reveler, curseur, annee, reduit } from './commun.js';
+import { menuMobile } from './menu.js';
 
 defilement();
 annee();
 curseur();
+menuMobile();
 
 const grille = document.getElementById('grille');
 const cartes = [...grille.querySelectorAll('.pj')];

@@ -1,10 +1,12 @@
 /* Page projet : le hero se referme en carte au défilement, la galerie
    horizontale s'épingle, chaque image glisse dans son cadre à contresens. */
 import { gsap, ScrollTrigger, defilement, revelerLignes, reveler, curseur, annee, reduit, bureau } from './commun.js';
+import { menuMobile } from './menu.js';
 
 defilement();
 annee();
 curseur();
+menuMobile();
 
 /* ── entrée ─────────────────────────────────────────── */
 if (!reduit) {

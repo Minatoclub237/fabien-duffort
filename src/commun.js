@@ -2,6 +2,7 @@
    découpe de titres. Le défilement garde la même inertie que la page d'accueil
    (demi-vie de 100 ms mesurée sur la vidéo de référence). */
 
+import { menuMobile } from './menu.js';
 import Lenis from 'lenis';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
@@ -116,6 +117,8 @@ export function revelerLignes(el, opts = {}) {
 
   return lignes;
 }
+
+export { menuMobile };
 
 export function annee() {
   const y = document.getElementById('year');
